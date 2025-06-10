@@ -1,0 +1,118 @@
+import 'package:flutter/material.dart';
+//import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+/// ThemeProvider for the app. Exposes ThemeData globally via Riverpod.
+final appThemeProvider = AppTheme.theme;
+
+class AppTheme {
+  static const Color primary = Color(0xFFB71C1C); // Deep red
+  static const Color primaryLight = Color(0xFFD32F2F);
+  static const Color primaryDark = Color(0xFF7F0000);
+  static const Color background = Colors.white;
+  static const Color surface = Color(0xFFF5F5F5);
+  static const Color accent = Color(0xFFEF5350); // Softer red
+  static const Color keyboardKey = Color(0xFFFAFAFA);
+  static const Color keyboardKeyText = Colors.black87;
+
+  static final TextTheme textTheme = TextTheme(
+    headlineLarge: TextStyle(
+      fontSize: 32,
+      fontWeight: FontWeight.bold,
+      color: Colors.black,
+      fontFamily: 'Roboto',
+    ),
+    headlineSmall: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
+      color: Colors.black87,
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 16,
+      fontFamily: 'Roboto',
+      color: Colors.black87,
+    ),
+    labelLarge: TextStyle(fontSize: 14, color: primaryDark),
+  );
+
+  static final ThemeData theme = ThemeData(
+    useMaterial3: true,
+    scaffoldBackgroundColor: background,
+    primaryColor: primary,
+    colorScheme: ColorScheme.light(
+      primary: primary,
+      secondary: accent,
+      surface: surface,
+      onPrimary: Colors.white,
+      onSecondary: Colors.white,
+      onSurface: Colors.black87,
+      error: Colors.red,
+      onError: Colors.white,
+    ),
+    textTheme: textTheme,
+    appBarTheme: AppBarTheme(
+      backgroundColor: primary,
+      foregroundColor: Colors.white,
+      elevation: 4,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: primary,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
+        textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+      ),
+    ),
+    cardTheme: CardThemeData(
+      color: surface,
+      elevation: 2,
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: surface,
+      labelStyle: TextStyle(color: primaryDark),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: primaryLight),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: primary, width: 2),
+      ),
+    ),
+  );
+
+  // Custom widget styles
+  static BoxDecoration customContainer = BoxDecoration(
+    color: surface,
+    borderRadius: BorderRadius.circular(16),
+    boxShadow: [
+      BoxShadow(color: Colors.black12, blurRadius: 8, offset: Offset(0, 4)),
+    ],
+  );
+
+  static BoxDecoration keyboardKeyDecoration = BoxDecoration(
+    color: keyboardKey,
+    borderRadius: BorderRadius.circular(8),
+    border: Border.all(color: Colors.grey.shade300),
+  );
+
+  static TextStyle keyboardKeyTextStyle = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    color: keyboardKeyText,
+  );
+
+  static TextStyle decorationTextStyle = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+    color: keyboardKeyText,
+  );
+
+  static ButtonStyle flatRedButton = TextButton.styleFrom(
+    foregroundColor: primary,
+    textStyle: const TextStyle(fontWeight: FontWeight.bold),
+  );
+}
