@@ -26,7 +26,8 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
   late final Animation<Alignment> _leftAlignmentAnimation;
   late final Animation<Alignment> _rightAlignmentAnimation;
   late final Animation<double> _glowAnimation;
-  late bool _isPressed = false;
+
+  final _buttonWidth = LayoutConfig.width * (2 / 3);
 
   @override
   void initState() {
@@ -66,13 +67,11 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
   }
 
   void _onTapUp(TapUpDetails details) {
-    setState(() => _isPressed = false);
     _animationController.reverse();
     widget.onPressed();
   }
 
   void _onTapDown(TapDownDetails details) {
-    setState(() => _isPressed = true);
     _animationController.forward();
   }
 
@@ -81,98 +80,92 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        return Transform.translate(
-          offset: Offset(0, 0),
-          child: MouseRegion(
-            onEnter: _onEnter,
-            onExit: _onExit,
-            child: GestureDetector(
-              onTapUp: _onTapUp,
-              onTapDown: _onTapDown,
-              child: Container(
-                width: LayoutConfig.width * (2 / 3),
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: widget.neonColor.withAlpha(
-                        (_glowAnimation.value * 20).round(),
-                      ),
-                      blurRadius: _glowAnimation.value,
-                      spreadRadius: 0,
+        return MouseRegion(
+          onEnter: _onEnter,
+          onExit: _onExit,
+          child: GestureDetector(
+            onTapUp: _onTapUp,
+            onTapDown: _onTapDown,
+            child: Container(
+              width: _buttonWidth,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: widget.neonColor.withAlpha(
+                      (_glowAnimation.value * 20).round(),
                     ),
-                  ],
+                    blurRadius: _glowAnimation.value,
+                    spreadRadius: 0,
+                  ),
+                ],
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: _leftAlignmentAnimation.value,
+                  colors: [widget.neonColor, Colors.transparent],
+                  stops: [1, 1],
+                ),
+                border: Border.all(color: widget.neonColor, width: 2),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: _leftAlignmentAnimation.value,
+                    begin: Alignment.centerRight,
+                    end: _rightAlignmentAnimation.value,
                     colors: [widget.neonColor, Colors.transparent],
                     stops: [1, 1],
                   ),
-                  border: Border.all(color: widget.neonColor, width: 2),
                 ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.centerRight,
-                      end: _rightAlignmentAnimation.value,
-                      colors: [widget.neonColor, Colors.transparent],
-                      stops: [1, 1],
-                    ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 10,
-                    ),
-                    child: Row(
-                      children: [
-                        Text(
-                          widget.num,
-                          style: TextStyle(
-                            fontFamily: 'JetBrains Mono',
-                            fontSize: 15,
-                            color: widget.neonColor,
-                            fontWeight: FontWeight.w700,
-                            shadows: [
-                              Shadow(color: widget.neonColor, blurRadius: 10),
-                              Shadow(color: Colors.black, blurRadius: 5),
-                            ],
-                          ),
+                  child: Row(
+                    children: [
+                      Text(
+                        widget.num,
+                        style: TextStyle(
+                          fontFamily: 'JetBrains Mono',
+                          fontSize: 15,
+                          color: widget.neonColor,
+                          fontWeight: FontWeight.w700,
+                          shadows: [
+                            Shadow(color: widget.neonColor, blurRadius: 10),
+                            Shadow(color: Colors.black, blurRadius: 5),
+                          ],
                         ),
-                        Expanded(
-                          child: Center(
-                            child: Text(
-                              widget.btnText,
-                              style: TextStyle(
-                                fontFamily: 'JetBrains Mono',
-                                fontSize: 15,
-                                color: widget.neonColor,
-                                fontWeight: FontWeight.w700,
-                                shadows: [
-                                  Shadow(
-                                    color: widget.neonColor,
-                                    blurRadius: 10,
-                                  ),
-                                  Shadow(color: Colors.black, blurRadius: 5),
-                                ],
-                              ),
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            widget.btnText,
+                            style: TextStyle(
+                              fontFamily: 'JetBrains Mono',
+                              fontSize: 15,
+                              color: widget.neonColor,
+                              fontWeight: FontWeight.w700,
+                              shadows: [
+                                Shadow(color: widget.neonColor, blurRadius: 10),
+                                Shadow(color: Colors.black, blurRadius: 5),
+                              ],
                             ),
                           ),
                         ),
-                        Text(
-                          '>',
-                          style: TextStyle(
-                            fontFamily: 'JetBrains Mono',
-                            fontSize: 15,
-                            color: widget.neonColor,
-                            fontWeight: FontWeight.w700,
-                            shadows: [
-                              Shadow(color: widget.neonColor, blurRadius: 10),
-                              Shadow(color: Colors.black, blurRadius: 5),
-                            ],
-                          ),
+                      ),
+                      Text(
+                        '>',
+                        style: TextStyle(
+                          fontFamily: 'JetBrains Mono',
+                          fontSize: 15,
+                          color: widget.neonColor,
+                          fontWeight: FontWeight.w700,
+                          shadows: [
+                            Shadow(color: widget.neonColor, blurRadius: 10),
+                            Shadow(color: Colors.black, blurRadius: 5),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
