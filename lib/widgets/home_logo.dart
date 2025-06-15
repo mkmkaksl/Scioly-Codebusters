@@ -31,9 +31,9 @@ class HomeLogo extends StatelessWidget {
           "SCIOLY\nCODEBUSTERS",
           style: TextStyle(
             color: AppTheme.logoGreen,
-            fontSize: 20,
-            fontFamily: 'JetBrains Mono',
-            fontWeight: FontWeight.w700,
+            fontSize: 17,
+            fontFamily: 'JetBrainsMonoBold',
+            fontWeight: FontWeight.w800,
           ),
           textAlign: TextAlign.center,
         ),

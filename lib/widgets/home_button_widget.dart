@@ -125,8 +125,8 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
                       Text(
                         widget.num,
                         style: TextStyle(
-                          fontFamily: 'JetBrains Mono',
-                          fontSize: 15,
+                          fontFamily: 'JetBrainsMono',
+                          fontSize: 10,
                           color: widget.neonColor,
                           fontWeight: FontWeight.w700,
                           shadows: [
@@ -140,10 +140,10 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
                           child: Text(
                             widget.btnText,
                             style: TextStyle(
-                              fontFamily: 'JetBrains Mono',
-                              fontSize: 17,
+                              fontFamily: 'JetBrainsMonoBold',
+                              fontSize: 15,
                               color: widget.neonColor,
-                              fontWeight: FontWeight.w700,
+                              fontWeight: FontWeight.bold,
                               shadows: [
                                 Shadow(color: widget.neonColor, blurRadius: 10),
                                 Shadow(color: Colors.black, blurRadius: 5),
@@ -155,7 +155,7 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
                       Text(
                         '>',
                         style: TextStyle(
-                          fontFamily: 'JetBrains Mono',
+                          fontFamily: 'JetBrainsMono',
                           fontSize: 15,
                           color: widget.neonColor,
                           fontWeight: FontWeight.w700,
