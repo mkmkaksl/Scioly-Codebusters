@@ -105,6 +105,7 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
                     begin: Alignment.centerLeft,
                     end: _leftAlignmentAnimation.value,
                     colors: [widget.neonColor, Colors.transparent],
+                    stops: [1, 1],
                   ),
                   border: Border.all(color: widget.neonColor, width: 2),
                 ),
@@ -114,6 +115,7 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
                       begin: Alignment.centerRight,
                       end: _rightAlignmentAnimation.value,
                       colors: [widget.neonColor, Colors.transparent],
+                      stops: [1, 1],
                     ),
                   ),
                   child: Padding(
