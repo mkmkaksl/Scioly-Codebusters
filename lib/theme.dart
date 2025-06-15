@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 final appThemeProvider = AppTheme.theme;
 
 class AppTheme {
-  static const Color primary = Color(0xFFB71C1C); // Deep red
+  static const Color primary = Color(0xFF00FF41); // Deep red #00ff41
   static const Color primaryLight = Color(0xFFD32F2F);
   static const Color primaryDark = Color(0xFF7F0000);
   static const Color background = Colors.white;
@@ -13,6 +13,14 @@ class AppTheme {
   static const Color accent = Color(0xFFEF5350); // Softer red
   static const Color keyboardKey = Color(0xFFFAFAFA);
   static const Color keyboardKeyText = Colors.black87;
+
+  static const BoxDecoration backgroundGradient = BoxDecoration(
+    gradient: LinearGradient(
+      colors: [Color(0xFF0a0a0a), Color(0xFF1a0a2e), Color(0xFF16213e)],
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+    ),
+  );
 
   static final TextTheme textTheme = TextTheme(
     headlineLarge: TextStyle(

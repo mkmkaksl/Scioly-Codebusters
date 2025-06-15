@@ -16,6 +16,7 @@ export 'widgets/aristocrat_grid_widget.dart';
 export 'widgets/patristocrat_grid_widget.dart';
 export 'widgets/cell_widget.dart';
 export 'widgets/keyboard_widget.dart';
+export 'widgets/home_button_widget.dart';
 
 export 'theme.dart';
 export 'main.dart';
