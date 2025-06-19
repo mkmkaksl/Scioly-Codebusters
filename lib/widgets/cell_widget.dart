@@ -2,14 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projects/library.dart';
 
-//has width and height data to be altered
-var containerWidth = 22.0;
-var containerHeight = containerWidth * 1.25;
-var decorationHeight = containerWidth * 0.7;
-var padding = 4.0;
-var screenW = LayoutConfig.width;
-var screenH = LayoutConfig.height;
-
 class CellWidget extends ConsumerWidget {
   final int index;
   final String gameId;
@@ -18,7 +10,7 @@ class CellWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cells = ref.watch(gameStateProvider(gameId).select((s) => s.cells));
+    final cells = ref.watch(gameProvider(gameId).select((s) => s.cells));
     //calculate colors
     var cellColor = Colors.white;
     if (cells[index].isSelected) {
@@ -49,7 +41,7 @@ class CellWidget extends ConsumerWidget {
           SizedBox(width: containerWidth, height: padding),
           GestureDetector(
             onTap: () =>
-                ref.read(gameStateProvider(gameId).notifier).selectCell(index),
+                ref.read(gameProvider(gameId).notifier).selectCell(index),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
               width: containerWidth,

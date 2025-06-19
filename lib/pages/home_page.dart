@@ -46,12 +46,15 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const Aristocrat(),
+                          builder: (context) => const GamePageSetup(
+                            gameId: "Aristocrat",
+                            language: Language.english,
+                          ),
                         ),
                       );
                     },
                     child: const Text(
-                      "Cryptograms",
+                      "Aristocrats",
                       style: TextStyle(fontSize: 30, color: Colors.white),
                     ),
                   ),
@@ -63,12 +66,52 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const Patristocrat(),
+                          builder: (context) => const GamePageSetup(
+                            gameId: "Patristocrat",
+                            language: Language.english,
+                          ),
                         ),
                       );
                     },
                     child: const Text(
                       "Patristocrats",
+                      style: TextStyle(fontSize: 30, color: Colors.white),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 25),
+                SizedBox(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const GamePageSetup(
+                            gameId: "Xenocrypt",
+                            language: Language.spanish,
+                          ),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "Xenocrypts",
+                      style: TextStyle(fontSize: 30, color: Colors.white),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 25),
+                SizedBox(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DictionaryWidget(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "View Dictionary",
                       style: TextStyle(fontSize: 30, color: Colors.white),
                     ),
                   ),

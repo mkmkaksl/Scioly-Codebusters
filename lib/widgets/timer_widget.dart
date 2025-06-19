@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projects/library.dart';
+
+class TimerWidget extends ConsumerStatefulWidget {
+  final String timerId;
+
+  const TimerWidget({super.key, required this.timerId});
+
+  @override
+  ConsumerState<TimerWidget> createState() => _TimerWidgetState();
+}
+
+class _TimerWidgetState extends ConsumerState<TimerWidget> {
+  late TimerNotifier timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = ref.read(timerProvider(widget.timerId).notifier);
+    var game = ref.read(gameProvider(widget.timerId).notifier);
+    if (game.cellCount() > 0 && !game.isCorrect()) {
+      timer.start(); // Or whatever you need to do on screen load
+    }
+  }
+
+  @override
+  void dispose() {
+    // Automatically pause the timer when leaving the screen
+    timer.pause();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final time = ref.watch(timerProvider(widget.timerId));
+    return Text('$time s', style: const TextStyle(fontSize: 40));
+  }
+}

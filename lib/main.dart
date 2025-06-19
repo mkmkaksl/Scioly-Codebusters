@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
-//import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'library.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+final patternMap = PatternMap();
 void main() async {
-  //await Hive.initFlutter();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(SolveRecordAdapter());
+  Hive.registerAdapter(GameModeStatsAdapter());
+  await Hive.openBox<GameModeStats>('statsBox');
+  for (var word in wordList) {
+    patternMap.addWord(word);
+  }
   runApp(
     ProviderScope(
       child: MaterialApp(home: HomePage(), theme: AppTheme.theme),

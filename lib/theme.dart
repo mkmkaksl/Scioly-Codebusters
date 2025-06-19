@@ -1,5 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:projects/library.dart';
 //import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+// Button dimensions for game controls (new quote, etc)
+const buttonWidth = 200.0;
+// inset padding
+const insetPadding = 16.0;
+//styling for cells
+const containerWidth = 22.0;
+const containerHeight = containerWidth * 1.25;
+const decorationHeight = containerWidth * 0.7;
+const padding = 4.0;
+var screenW = LayoutConfig.width;
+var screenH = LayoutConfig.height;
+var maxLength = (screenW * 0.9) - insetPadding * 2;
+//styling for keyboard
+const double spacing = 4;
+const double undoButtonHeight = 50;
+const double horizontalBuffer = 20;
+final safeWidth = screenW - horizontalBuffer;
+final maxKeysInRow = 10;
+final keyWidth = (safeWidth - (maxKeysInRow - 1) * spacing) / maxKeysInRow;
+final keyboardH = screenH * 0.25; // Height of the keyboard widget
 
 /// ThemeProvider for the app. Exposes ThemeData globally via Riverpod.
 final appThemeProvider = AppTheme.theme;

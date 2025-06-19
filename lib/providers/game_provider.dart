@@ -1,186 +1,150 @@
-//import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projects/library.dart';
 
 class GameProvider extends FamilyNotifier<Game, String> {
   @override
   Game build(String arg) {
-    return Game(quote: Quote.getNewQuote());
+    return Game(quote: Quote());
   }
 
   String setLetter(String letter) {
-    String currLetter = state.cells[state.selectedIdx].text;
-    var newCells = [...state.cells];
+    int index = state.selectedIdx;
+    String currLetter = state.cells[index].text;
+    var newCells = [...state.cells].setLetter(index, letter);
     var newHistory = [...state.history, state.copyWith()];
-    if (state.gameMode == GameMode.assisted) {
-      for (int i = 0; i < newCells.length; i++) {
-        if (newCells[i].isLit) newCells[i] = newCells[i].copyWith(text: letter);
-      }
-    } else {
-      newCells[state.selectedIdx] = newCells[state.selectedIdx].copyWith(
-        text: letter,
-      );
-    }
-    state = state.copyWith(cells: newCells, history: newHistory);
+    state = state.copyWith(
+      cells: newCells,
+      history: newHistory,
+      isPerfect: currLetter == "" ? state.isPerfect : false,
+    );
+    nextCell(index - 1);
     if (state.gameMode == GameMode.assisted) markDuplicate();
-    markIncorrect();
-    nextCell();
+    if (state.showCorrect) markCorrect();
+    if (!state.showCorrect) markIncorrect();
+    if (!state.isCorrect) checkAnswer();
     return currLetter;
   }
 
   void markDuplicate() {
-    // Step 1: Map each text to the set of unique ciphers associated with it
-    var cells = [...state.cells];
-    final Map<String, Set<String>> textToCiphers = {};
-
-    for (final cell in cells) {
-      textToCiphers.putIfAbsent(cell.text, () => <String>{}).add(cell.cipher);
-    }
-
-    // Step 2: Identify which texts map to multiple ciphers
-    final Set<String> incorrectTexts = textToCiphers.entries
-        .where((entry) => entry.value.length > 1)
-        .map((entry) => entry.key)
-        .toSet();
-
-    // Step 3: Mark cells as incorrect if their text is in the incorrectTexts set
-    var newCells = cells.map((cell) {
-      if (incorrectTexts.contains(cell.text)) {
-        return cell.copyWith(isDuplicate: true);
-      } else {
-        return cell.copyWith(isDuplicate: false);
-      }
-    }).toList();
-    state = state.copyWith(cells: newCells);
-  }
-
-  void nextCell() {
-    int curIdx = state.selectedIdx;
-    while (curIdx < state.cells.length - 1) {
-      curIdx++;
-      if (state.cells[curIdx].text == "") {
-        selectCell(curIdx);
-        break;
-      }
-    }
+    state = state.copyWith(cells: [...state.cells].markDuplicates());
   }
 
   void markCorrect() {
-    var newCells = [...state.cells];
-    for (int i = 0; i < newCells.length; i++) {
-      if (newCells[i].cipher == state.quote.key[newCells[i].text]) {
-        newCells[i] = newCells[i].copyWith(isCorrect: true);
-      }
-    }
-    state = state.copyWith(cells: newCells);
-    markIncorrect();
+    state = state.copyWith(
+      cells: [...state.cells].markCorrect(),
+      showCorrect: true,
+      usedHints: true,
+    );
   }
 
-  //make sure cells previously marked correct are marked incorrect when changed
   void markIncorrect() {
-    var newCells = [...state.cells];
-    for (int i = 0; i < newCells.length; i++) {
-      if (newCells[i].cipher != state.quote.key[newCells[i].text]) {
-        newCells[i] = newCells[i].copyWith(isCorrect: false);
-      }
-    }
-    state = state.copyWith(cells: newCells);
+    state = state.copyWith(
+      cells: [...state.cells].markIncorrect(),
+      showCorrect: false,
+    );
   }
 
   void selectCell(int index) {
-    deselectCells();
+    state = state.copyWith(
+      cells: [...state.cells].selectCell(index),
+      selectedIdx: index,
+    );
     if (state.gameMode == GameMode.assisted) {
-      highlightCells(index);
+      state = state.copyWith(cells: [...state.cells].highlightCells(index));
     }
-    var newCells = [...state.cells];
-    newCells[index] = newCells[index].copyWith(isSelected: true);
-    state = state.copyWith(cells: newCells, selectedIdx: index);
+    ref
+        .read(scrollProvider(arg).notifier)
+        .scrollToSelected(
+          state.cells[index].row *
+              (containerHeight + 3 * padding + 2 * decorationHeight),
+        );
   }
 
-  void deselectCells() {
-    var newCells = [...state.cells];
-    for (int i = 0; i < newCells.length; i++) {
-      newCells[i] = newCells[i].copyWith(isSelected: false, isLit: false);
-    }
-    state = state.copyWith(cells: newCells);
-  }
-
-  //highlights all similar cells, including selected
-  void highlightCells(int index) {
-    var newCells = [...state.cells];
-    for (int i = 0; i < newCells.length; i++) {
-      if (newCells[i].cipher == newCells[index].cipher) {
-        newCells[i] = newCells[i].copyWith(isLit: true);
+  //nexCell(-1) goes to first valid cell
+  void nextCell(int idx) {
+    int og = idx;
+    while (idx < state.cells.length - 1) {
+      idx++;
+      if (idx == og) break;
+      if (state.cells[idx].text.isEmpty) {
+        selectCell(idx);
+        break;
       }
+      if (idx == state.cells.length - 1) idx = -1;
     }
-    state = state.copyWith(cells: newCells);
+  }
+
+  void incrementCell(int increment) {
+    int idx = state.selectedIdx;
+    idx += increment;
+    while (idx < state.cells.length &&
+        idx >= 0 &&
+        state.cells[idx].isException) {
+      idx += increment;
+    }
+    if (idx < state.cells.length && idx >= 0) selectCell(idx);
   }
 
   void undo() {
     if (state.history.isEmpty) return;
+    bool isCorrect = state.isCorrect;
+    bool showCorrect = state.showCorrect;
+    bool usedHints = state.usedHints;
     state = state.history.last;
+    state = state.copyWith(
+      isCorrect: isCorrect,
+      showCorrect: showCorrect,
+      usedHints: usedHints,
+      isPerfect: false,
+    );
+    selectCell(state.selectedIdx);
   }
 
-  bool checkAnswer() {
-    if (state.isCorrect) return true;
+  void reset() {
+    final newHistory = [...state.history, state.copyWith()];
+    state = state.copyWith(
+      cells: [...state.cells].reset(),
+      history: newHistory,
+      isPerfect: false,
+    );
+    nextCell(-1);
+  }
+
+  void hint() {
+    String letter = state.cells[state.selectedIdx].plainText;
+    ref.read(keyboardProvider(arg).notifier).pressKey(letter);
+  }
+
+  void checkAnswer() {
+    if (state.isCorrect) return;
     for (int i = 0; i < state.cells.length; i++) {
-      if (state.cells[i].cipher != state.quote.key[state.cells[i].text]) {
-        return false;
-      }
+      if (state.cells[i].text != state.cells[i].plainText) return;
     }
-    state = state.copyWith(isCorrect: true);
-    return true;
+    ref.read(timerProvider(arg).notifier).pause();
+    double time = ref.read(timerProvider(arg).notifier).getTime().toDouble();
+    final statsNotifier = ref.read(gameModeStatsProvider(arg).notifier);
+    statsNotifier.addSolve(time);
+    state = state.copyWith(isCorrect: true, showComplete: true);
   }
 
-  void buildAristocrat(GameMode gameMode) {
-    List<Cell> newCells = [];
-    Quote quote = Quote.getNewQuote();
-    //add cells
-    for (String i in quote.plainText.split('')) {
-      if (Quote.isException(i)) {
-        newCells.add(Cell(text: i, cipher: "", isException: true));
-      } else {
-        newCells.add(
-          Cell(
-            text: "",
-            cipher: quote.key[i]!,
-            isException: false,
-            count: quote.frequencies[i]!,
-          ),
-        );
-      }
-    }
-    //select first valid cell and update state
-    int idx = 0;
-    while (newCells[idx].isException) {
-      idx++;
-    }
-    state = Game(quote: quote, cells: newCells, gameMode: gameMode);
-    selectCell(idx);
-    ref.read(keyboardProvider(arg).notifier).reset();
+  void setPopup(bool value) {
+    state = state.copyWith(showComplete: value);
   }
 
-  void buildPatristocrat(GameMode gameMode) {
-    List<Cell> newCells = [];
-    Quote quote = Quote.getNewQuote();
-    //add cells
-    for (String i in quote.plainText.split('')) {
-      if (!Quote.isException(i)) {
-        newCells.add(
-          Cell(
-            text: "",
-            cipher: quote.key[i]!,
-            isException: false,
-            count: quote.frequencies[i]!,
-          ),
-        );
-      }
-    }
-    //select first valid cell and update state
-    state = Game(quote: quote, cells: newCells, gameMode: gameMode);
-    selectCell(0);
-    ref.read(keyboardProvider(arg).notifier).reset();
+  void destroy() {
+    state = Game(quote: Quote());
   }
+
+  void buildCryptogram(GameMode gameMode, Language language, String gameId) {
+    state = GameSetup.buildCryptogram(gameMode, language, gameId);
+    nextCell(-1);
+    ref.read(keyboardProvider(arg).notifier).reset();
+    ref.read(timerProvider(arg).notifier).restart();
+  }
+
+  //timer widget uses in init state
+  bool isCorrect() => state.isCorrect;
+  int cellCount() => state.cells.length;
 
   /* for Patristocrats
   void insertCell(String txt, int idx) {
@@ -197,6 +161,6 @@ class GameProvider extends FamilyNotifier<Game, String> {
   }*/
 }
 
-final gameStateProvider = NotifierProvider.family<GameProvider, Game, String>(
+final gameProvider = NotifierProvider.family<GameProvider, Game, String>(
   GameProvider.new,
 );

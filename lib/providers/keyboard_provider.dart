@@ -10,26 +10,35 @@ class KeyboardProvider extends FamilyNotifier<Keyboard, String> {
   }
 
   void pressKey(String key) {
-    //if (state.pressedKeys.contains(key)) return;
     final newHistory = [...state.history, state.copyWith()];
-    String letter = ref.read(gameStateProvider(arg).notifier).setLetter(key);
-    var newPressed = {...state.pressedKeys, key};
-    final gameMode = ref.watch(
-      gameStateProvider(arg).select((s) => s.gameMode),
-    );
+    String letter = ref.read(gameProvider(arg).notifier).setLetter(key);
+    var newPressed = Map<String, int>.from(state.pressedKeys);
+    newPressed.update(key, (value) => value + 1, ifAbsent: () => 1);
+    final gameMode = ref.watch(gameProvider(arg).select((s) => s.gameMode));
     if (gameMode == GameMode.manual) newPressed = {};
-    if (newPressed.contains(letter)) newPressed.remove(letter);
+    if (newPressed.containsKey(letter)) {
+      newPressed[letter] = newPressed[letter]! - 1;
+      if (newPressed[letter] == 0) {
+        newPressed.remove(letter);
+      }
+    }
     state = state.copyWith(pressedKeys: newPressed, history: newHistory);
   }
 
   void undo() {
     if (state.history.isEmpty) return;
     state = state.history.last;
-    ref.read(gameStateProvider(arg).notifier).undo();
+    ref.read(gameProvider(arg).notifier).undo();
   }
 
   void reset() {
     state = Keyboard();
+  }
+
+  void resetPuzzle() {
+    final newHistory = [...state.history, state.copyWith()];
+    state = state.copyWith(pressedKeys: {}, history: newHistory);
+    ref.read(gameProvider(arg).notifier).reset();
   }
 }
 
