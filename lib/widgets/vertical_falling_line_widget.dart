@@ -55,15 +55,12 @@ class _VerticalFallingLineState extends ConsumerState<VerticalFallingLine>
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        return Transform.translate(
-          offset: Offset(0, 0),
-          child: CustomPaint(
-            painter: VerticalText(
-              text: text,
-              fontsize: fontsize,
-              y: _fallingAnimation.value,
-              x: x,
-            ),
+        return CustomPaint(
+          painter: VerticalText(
+            text: text,
+            fontsize: fontsize,
+            y: _fallingAnimation.value,
+            x: x,
           ),
         );
       },

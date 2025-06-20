@@ -13,23 +13,38 @@ class HomePage extends StatelessWidget {
 
     return Container(
       decoration: AppTheme.backgroundGradient,
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       child: Stack(
         children: [
           MatrixBackgroundWidget(),
           Scaffold(
             backgroundColor: AppTheme.appBarBackground,
             appBar: AppBar(
-              title: const Text("System"),
+              title: const Text(
+                "SYSTEM",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              shape: Border(
+                bottom: BorderSide(color: AppTheme.logoGreen, width: 1),
+              ),
               actions: <Widget>[
-                IconButton(
-                  iconSize: 30,
-                  icon: const Icon(Icons.settings),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Settings()),
-                    );
-                  },
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    border: Border.all(color: AppTheme.logoGreen, width: 2),
+                  ),
+                  child: IconButton(
+                    iconSize: 20,
+                    icon: const Icon(Icons.settings),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Settings(),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ],
             ),

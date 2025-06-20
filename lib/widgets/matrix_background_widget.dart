@@ -22,7 +22,10 @@ class _MatrixBackgroundWidgetState
   @override
   void initState() {
     super.initState();
-    _startGeneratingLines();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _startGeneratingLines();
+    });
   }
 
   void _startGeneratingLines() {
