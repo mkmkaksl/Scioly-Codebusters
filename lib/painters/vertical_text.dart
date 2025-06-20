@@ -36,7 +36,15 @@ class VerticalText extends CustomPainter {
     for (int i = 0; i < text.length; i++) {
       var letter = TextSpan(
         text: text[i],
-        style: TextStyle(color: curColor, fontSize: fontsize),
+        style: TextStyle(
+          color: curColor,
+          fontSize: fontsize,
+          shadows: [
+            Shadow(color: curColor, blurRadius: 10),
+            Shadow(color: Colors.black, blurRadius: 15),
+            Shadow(color: Colors.white, blurRadius: 20),
+          ],
+        ),
       );
 
       textPainter.text = letter;
