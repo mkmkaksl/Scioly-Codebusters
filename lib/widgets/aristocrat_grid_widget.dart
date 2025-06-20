@@ -4,17 +4,16 @@ import 'package:projects/library.dart';
 
 //change width, replace boxes with padding, change file-> cryptogram_grid_widget
 class CryptogramGridWidget extends ConsumerWidget {
-  final String gameId;
-  const CryptogramGridWidget({super.key, required this.gameId});
+  final String gameKey;
+  const CryptogramGridWidget({super.key, required this.gameKey});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cells = ref.watch(gameProvider(gameId).select((s) => s.cells));
-    debugPrint("Widget cells: ${cells.length}");
+    final cells = ref.watch(gameProvider(gameKey).select((s) => s.cells));
     Map<int, List<Widget>> rows = {};
     for (int i = 0; i < cells.length; i++) {
       rows.putIfAbsent(cells[i].row, () => []);
-      rows[cells[i].row]!.add(CellWidget(index: i, gameId: gameId));
+      rows[cells[i].row]!.add(CellWidget(index: i, gameId: gameKey));
       if (!cells[i].isException) {
         rows[cells[i].row]!.add(
           SizedBox(width: padding, height: containerHeight),

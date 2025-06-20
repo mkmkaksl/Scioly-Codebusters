@@ -22,6 +22,8 @@ final safeWidth = screenW - horizontalBuffer;
 final maxKeysInRow = 10;
 final keyWidth = (safeWidth - (maxKeysInRow - 1) * spacing) / maxKeysInRow;
 final keyboardH = screenH * 0.25; // Height of the keyboard widget
+//panel height for timer etc.
+const double panelHeight = 50.0;
 
 /// ThemeProvider for the app. Exposes ThemeData globally via Riverpod.
 final appThemeProvider = AppTheme.theme;

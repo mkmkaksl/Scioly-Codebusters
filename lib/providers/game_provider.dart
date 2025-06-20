@@ -7,11 +7,17 @@ class GameProvider extends FamilyNotifier<Game, String> {
     return Game(quote: Quote());
   }
 
-  String setLetter(String letter) {
+  String setLetter(String letter, bool saveHistory) {
     int index = state.selectedIdx;
     String currLetter = state.cells[index].text;
+    if (currLetter == letter) {
+      nextCell(index - 1);
+      return currLetter;
+    }
     var newCells = [...state.cells].setLetter(index, letter);
-    var newHistory = [...state.history, state.copyWith()];
+    var newHistory = saveHistory
+        ? [...state.history, state.copyWith()]
+        : state.history;
     state = state.copyWith(
       cells: newCells,
       history: newHistory,
@@ -112,7 +118,11 @@ class GameProvider extends FamilyNotifier<Game, String> {
 
   void hint() {
     String letter = state.cells[state.selectedIdx].plainText;
-    ref.read(keyboardProvider(arg).notifier).pressKey(letter);
+    ref.read(keyboardProvider(arg).notifier).pressKey(letter, true);
+  }
+
+  void saveHistory() {
+    state = state.copyWith(history: [...state.history, state.copyWith()]);
   }
 
   void checkAnswer() {

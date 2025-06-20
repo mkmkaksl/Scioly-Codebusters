@@ -3,7 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'library.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final patternMap = PatternMap();
+final dictionary = PatternMap();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
@@ -11,7 +11,7 @@ void main() async {
   Hive.registerAdapter(GameModeStatsAdapter());
   await Hive.openBox<GameModeStats>('statsBox');
   for (var word in wordList) {
-    patternMap.addWord(word);
+    dictionary.addWord(word);
   }
   runApp(
     ProviderScope(

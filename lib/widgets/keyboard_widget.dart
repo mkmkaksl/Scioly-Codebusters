@@ -38,7 +38,7 @@ class KeyboardWidget extends ConsumerWidget {
           height: double.infinity,
           child: ElevatedButton(
             onPressed: () =>
-                ref.read(keyboardProvider(gameId).notifier).pressKey(key),
+                ref.read(keyboardProvider(gameId).notifier).pressKey(key, true),
             style: ElevatedButton.styleFrom(
               backgroundColor: isPressed ? Colors.grey : null,
               padding: EdgeInsets.zero,
@@ -101,7 +101,7 @@ class KeyboardWidget extends ConsumerWidget {
                     child: ElevatedButton.icon(
                       onPressed: () => ref
                           .read(keyboardProvider(gameId).notifier)
-                          .pressKey(""),
+                          .pressKey("", true),
                       icon: const Icon(Icons.delete),
                       label: const Text("Delete"),
                     ),

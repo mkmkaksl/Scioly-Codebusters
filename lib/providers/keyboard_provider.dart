@@ -9,9 +9,14 @@ class KeyboardProvider extends FamilyNotifier<Keyboard, String> {
     return Keyboard();
   }
 
-  void pressKey(String key) {
-    final newHistory = [...state.history, state.copyWith()];
-    String letter = ref.read(gameProvider(arg).notifier).setLetter(key);
+  void pressKey(String key, bool saveHistory) {
+    String letter = ref
+        .read(gameProvider(arg).notifier)
+        .setLetter(key, saveHistory);
+    if (letter == key) return;
+    final newHistory = saveHistory
+        ? [...state.history, state.copyWith()]
+        : state.history;
     var newPressed = Map<String, int>.from(state.pressedKeys);
     newPressed.update(key, (value) => value + 1, ifAbsent: () => 1);
     final gameMode = ref.watch(gameProvider(arg).select((s) => s.gameMode));

@@ -17,7 +17,8 @@ class ScrollControllerNotifier
     var scrollHeight =
         state.position.viewportDimension -
         (containerHeight + 2 * decorationHeight) -
-        screenH / 4;
+        keyboardH -
+        panelHeight;
     if ((position - state.offset) > scrollHeight) {
       state.animateTo(
         position - (scrollHeight / 2),

@@ -8,7 +8,7 @@ class DictionaryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final entries = patternMap.map.entries.toList();
+    final entries = dictionary.map.entries.toList();
 
     return Scaffold(
       appBar: AppBar(title: const Text('Pattern Map')),

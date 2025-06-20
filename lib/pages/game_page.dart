@@ -44,16 +44,56 @@ class GamePage extends ConsumerWidget {
         children: [
           Stack(
             children: [
-              Column(
-                children: [
-                  Center(
+              SingleChildScrollView(
+                controller: scrollController,
+                padding: EdgeInsets.fromLTRB(
+                  insetPadding,
+                  insetPadding + panelHeight,
+                  insetPadding,
+                  insetPadding + keyboardH, // Add enough bottom padding
+                ),
+                child: Column(
+                  children: [
+                    CryptogramGridWidget(gameKey: key),
+                    if (isCorrect)
+                      Column(
+                        children: [
+                          SizedBox(height: padding),
+                          SizedBox(
+                            width: maxLength,
+                            child: Text(
+                              quote,
+                              style: const TextStyle(fontSize: 18),
+                            ),
+                          ),
+                        ],
+                      ),
+                  ],
+                ),
+              ),
+              AnimatedBuilder(
+                animation: scrollController,
+                builder: (context, child) {
+                  return DictionaryPopoverWidget(gameKey: key);
+                },
+              ),
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: Center(
+                  child: Container(
+                    width: screenW,
+                    height: panelHeight + padding,
+                    decoration: BoxDecoration(color: Colors.white),
+                    padding: const EdgeInsets.symmetric(vertical: padding),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         TimerWidget(timerId: key),
                         SizedBox(
                           width: buttonWidth,
-                          height: 50,
+                          height: panelHeight,
                           child: CheckboxListTile(
                             title: const Text('Show Correct'),
                             value: showCorrect,
@@ -67,7 +107,7 @@ class GamePage extends ConsumerWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 50,
+                          height: panelHeight,
                           child: ElevatedButton(
                             onPressed: () {
                               provider.hint();
@@ -77,46 +117,6 @@ class GamePage extends ConsumerWidget {
                         ),
                       ],
                     ),
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      controller: scrollController,
-                      padding: EdgeInsets.fromLTRB(
-                        insetPadding,
-                        insetPadding,
-                        insetPadding,
-                        insetPadding + keyboardH, // Add enough bottom padding
-                      ),
-                      child: Column(
-                        children: [
-                          CryptogramGridWidget(gameId: key),
-                          if (isCorrect)
-                            Column(
-                              children: [
-                                SizedBox(height: padding),
-                                SizedBox(
-                                  width: maxLength,
-                                  child: Text(
-                                    quote,
-                                    style: const TextStyle(fontSize: 18),
-                                  ),
-                                ),
-                              ],
-                            ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Positioned(
-                left: 0,
-                right: 0,
-                bottom: screenH * 0.75,
-                child: SingleChildScrollView(
-                  child: SizedBox(
-                    height: containerHeight * 2,
-                    child: Text("hello"),
                   ),
                 ),
               ),
