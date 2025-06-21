@@ -95,40 +95,11 @@ class _StatBoxWidgetState extends ConsumerState<StatBoxWidget>
                 padding: EdgeInsets.all(insetPadding),
                 child: Column(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(color: widget.neonColor, width: 2),
-                        ),
-                      ),
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                      child: Row(
-                        children: [
-                          Container(
-                            color: widget.neonColor,
-                            padding: EdgeInsets.symmetric(
-                              vertical: 3,
-                              horizontal: 10,
-                            ),
-                            margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-                            child: Text(
-                              widget.num,
-                              style: TextStyle(fontWeight: FontWeight.w700),
-                            ),
-                          ),
-
-                          Text(
-                            widget.title.toUpperCase(),
-                            style: TextStyle(
-                              color: widget.neonColor,
-                              fontFamily: 'JetBrainsMonoBold',
-                              fontSize: 18,
-                            ),
-                          ),
-                        ],
-                      ),
+                    HeadingWidget(
+                      neonColor: widget.neonColor,
+                      title: widget.title,
+                      num: widget.num,
                     ),
-
                     // padding
                     const SizedBox(height: 20),
 

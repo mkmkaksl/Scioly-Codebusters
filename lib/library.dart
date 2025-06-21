@@ -33,6 +33,7 @@ export 'widgets/matrix_background_widget.dart';
 export 'widgets/stat_box_widget.dart';
 export 'widgets/stat_row_widget.dart';
 export 'widgets/dictionary_popover_widget.dart';
+export 'widgets/heading_widget.dart';
 
 export 'painters/vertical_text.dart';
 
