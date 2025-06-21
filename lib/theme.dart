@@ -61,6 +61,12 @@ class AppTheme {
       color: logoGreen,
       fontFamily: 'JetBrainsMono',
     ),
+    headlineMedium: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+      color: logoGreen,
+      fontFamily: 'JetBrainsMono',
+    ),
     headlineSmall: TextStyle(
       fontSize: 15,
       fontWeight: FontWeight.w600,
@@ -70,7 +76,7 @@ class AppTheme {
     ),
     bodyLarge: TextStyle(
       fontSize: 16,
-      fontFamily: 'Roboto',
+      fontFamily: 'JetBrainsMono',
       color: Colors.black87,
     ),
     labelLarge: TextStyle(fontSize: 14, color: primaryDark),
@@ -80,6 +86,7 @@ class AppTheme {
     useMaterial3: true,
     scaffoldBackgroundColor: background,
     primaryColor: primary,
+    fontFamily: 'JetBrainsMono',
     colorScheme: ColorScheme.light(
       primary: primary,
       secondary: accent,

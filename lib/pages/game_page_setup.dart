@@ -31,7 +31,9 @@ class GamePageSetup extends ConsumerWidget {
             Center(
               child: Text(
                 gameId.toUpperCase(),
-                style: Theme.of(context).textTheme.headlineLarge,
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                  shadows: [Shadow(color: AppTheme.logoGreen, blurRadius: 5)],
+                ),
               ),
             ),
             SizedBox(height: 10),

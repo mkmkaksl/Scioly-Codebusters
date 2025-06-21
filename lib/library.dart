@@ -30,9 +30,11 @@ export 'widgets/timer_widget.dart';
 export 'widgets/dictionary_widget.dart';
 export 'widgets/vertical_falling_line_widget.dart';
 export 'widgets/matrix_background_widget.dart';
+export 'widgets/stat_box_widget.dart';
+export 'widgets/stat_row_widget.dart';
+export 'widgets/dictionary_popover_widget.dart';
 
 export 'painters/vertical_text.dart';
-export 'widgets/dictionary_popover_widget.dart';
 
 export 'theme.dart';
 export 'main.dart';
