@@ -1,6 +1,5 @@
 export 'pages/home_page.dart';
 export 'pages/settings.dart';
-export 'widgets/stats_grid_widget.dart';
 export 'pages/game_page_setup.dart';
 export 'pages/game_page.dart';
 
@@ -30,6 +29,7 @@ export 'widgets/timer_widget.dart';
 export 'widgets/dictionary_widget.dart';
 export 'widgets/vertical_falling_line_widget.dart';
 export 'widgets/matrix_background_widget.dart';
+export 'widgets/stats_grid_widget.dart';
 export 'widgets/stat_box_widget.dart';
 export 'widgets/stat_row_widget.dart';
 export 'widgets/dictionary_popover_widget.dart';

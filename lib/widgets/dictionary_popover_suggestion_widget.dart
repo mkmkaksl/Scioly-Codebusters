@@ -21,9 +21,7 @@ class _DictionaryPopoverSuggestionWidgetState
     extends ConsumerState<DictionaryPopoverSuggestionWidget>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
-  late final Animation<Alignment> _leftAlignmentAnimation;
-  late final Animation<Alignment> _rightAlignmentAnimation;
-  late final Animation<double> _glowAnimation;
+  late final Animation<double> _alphaColorAnimation;
 
   final _buttonWidth = screenW * (2 / 3);
   late final List<Color> gradientColor;
@@ -36,18 +34,8 @@ class _DictionaryPopoverSuggestionWidgetState
       vsync: this,
     );
 
-    _leftAlignmentAnimation =
-        Tween(begin: Alignment.centerLeft, end: Alignment.centerRight).animate(
-          CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
-        );
-
-    _rightAlignmentAnimation =
-        Tween(begin: Alignment.centerRight, end: Alignment.centerLeft).animate(
-          CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
-        );
-
-    _glowAnimation = Tween(begin: 0.0, end: 10.0).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.linear),
+    _alphaColorAnimation = Tween(begin: 50.0, end: 75.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
     );
   }
 
@@ -91,7 +79,9 @@ class _DictionaryPopoverSuggestionWidgetState
               padding: EdgeInsets.symmetric(horizontal: 5),
               decoration: BoxDecoration(
                 border: BoxBorder.all(color: AppTheme.logoGreen, width: 1),
-                color: AppTheme.logoGreen.withAlpha(50),
+                color: AppTheme.logoGreen.withAlpha(
+                  _alphaColorAnimation.value.toInt(),
+                ),
               ),
               child: Center(
                 child: Text(

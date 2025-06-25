@@ -12,17 +12,23 @@ class CellWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cells = ref.watch(gameProvider(gameId).select((s) => s.cells));
     //calculate colors
-    var cellColor = Colors.white;
+    var cellColor = AppTheme.logoGreen.withAlpha(100);
     if (cells[index].isSelected) {
       cellColor = Colors.orange;
     } else if (cells[index].isLit) {
       cellColor = Colors.yellow;
     }
-    var textColor = Colors.black87;
+    var textColor = Colors.white;
+    List<BoxShadow> shadows = [];
+
     if (cells[index].isCorrect) {
-      textColor = Colors.green;
+      textColor = Colors.black;
+      shadows = [BoxShadow(color: AppTheme.logoGreen, blurRadius: 5)];
     } else if (cells[index].isDuplicate) {
       textColor = Colors.red;
+    } else {
+      textColor = Colors.white;
+      shadows.clear();
     }
 
     if (!cells[index].isException) {
@@ -48,7 +54,8 @@ class CellWidget extends ConsumerWidget {
               height: containerHeight,
               decoration: BoxDecoration(
                 color: cellColor,
-                border: Border.all(color: Colors.black),
+                border: Border.all(color: AppTheme.logoGreen, width: 1),
+                boxShadow: shadows,
               ),
               child: Center(
                 child: Text(

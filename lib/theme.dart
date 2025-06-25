@@ -37,9 +37,9 @@ class AppTheme {
   static const Color appBarBackground = Colors.transparent;
   static const Color surface = Color(0xFFF5F5F5);
   static const Color accent = Color(0xFFEF5350); // Softer red
-  static const Color keyboardKey = Color(0xFFFAFAFA);
-  static const Color keyboardKeyText = Colors.black87;
   static const Color logoGreen = Color(0xFF00FF41); // Also used for logo
+  static const Color keyboardKey = Color(0xFFFAFAFA);
+  static const Color keyboardKeyText = logoGreen;
 
   static const backgroundColors = [
     Color(0xFF0a0a0a),
