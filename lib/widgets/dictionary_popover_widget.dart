@@ -16,58 +16,11 @@ class DictionaryPopoverWidget extends ConsumerWidget {
       gameProvider(gameKey).select((s) => s.selectedIdx),
     );
     final cells = ref.watch(gameProvider(gameKey).select((s) => s.cells));
-    final cell = cells[selectedIdx];
-    final cellHeight = containerHeight + 3 * padding + 2 * decorationHeight;
-    final yPosition =
-        (cell.row + 1) * cellHeight +
-        panelHeight -
-        (2 * padding) +
-        insetPadding -
-        decorationHeight;
-    int i = selectedIdx;
-
-    // Removed this section because it seemed redundant
-    // while (i > 0 && cells[i].row == cell.row) {
-    //   i--;
-    // }
-
-    // i = selectedIdx;
-    while (!cells[i].isException && i >= 0) {
-      i--;
-    }
-    int wordStart = i + 1;
-    String word = "";
-    String typed = "";
-    for (int j = wordStart; !cells[j].isException; j++) {
-      word += cells[j].plainText;
-      typed += cells[j].text == "" ? "*" : cells[j].text;
-    }
-    final words = dictionary.map[getPatternKey(word)] ?? [];
-    final newWords = [...words];
-    for (String w in words) {
-      for (int j = 0; j < typed.length; j++) {
-        if (typed[j] != "*" && w[j].toUpperCase() != typed[j]) {
-          newWords.remove(w);
-        }
-      }
-    }
-    int numExceptions = 0;
-    i = selectedIdx;
-    while (i >= 0 && cells[i].row == cell.row) {
-      if (cells[i].isException) {
-        numExceptions++;
-      }
-      i--;
-    }
-    final xPosition =
-        (wordStart - (i == 0 ? i : i + 1) - numExceptions) *
-            (containerWidth + padding) +
-        (numExceptions) * (containerWidth) +
-        insetPadding;
+    final newWords = getSuggestedWords(cells, selectedIdx);
+    int wordStart = getWordStart(selectedIdx, cells);
+    String word = getWord(wordStart, cells);
 
     return Positioned(
-      // top: yPosition - scrollController.offset,
-      // left: xPosition,
       bottom: keyboardH,
       left: 0,
       right: 0,

@@ -14,7 +14,7 @@ class GamePageSetup extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     GameMode gameMode = ref.watch(gameModeProvider(gameId));
-    String key = "$gameId|${gameMode.name}";
+    String key = "$gameId (${toTitleCase(gameMode.name)})";
     final gmProvider = ref.read(gameModeProvider(gameId).notifier);
     final gProvider = ref.read(gameProvider(key).notifier);
     var cellCount = ref.watch(gameProvider(key).select((s) => s.cells.length));

@@ -16,7 +16,7 @@ class GamePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final key = "$gameId|${gameMode.name}";
+    final key = "$gameId (${toTitleCase(gameMode.name)})";
     final provider = ref.read(gameProvider(key).notifier);
     final scrollController = ref.watch(scrollProvider(key));
     final quote = ref.watch(gameProvider(key).select((s) => s.quote.ogQuote));
@@ -62,7 +62,9 @@ class GamePage extends ConsumerWidget {
                     insetPadding,
                     insetPadding + panelHeight,
                     insetPadding,
-                    insetPadding + keyboardH, // Add enough bottom padding
+                    insetPadding +
+                        keyboardH +
+                        (containerHeight * 2), // Add enough bottom padding
                   ),
                   child: Column(
                     children: [

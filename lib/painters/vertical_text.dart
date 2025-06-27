@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projects/library.dart';
-import 'dart:math';
 
 class VerticalText extends CustomPainter {
   double x;
@@ -22,8 +20,6 @@ class VerticalText extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Random random = Random();
-
     int greenColor = 50;
     int increment = text.isNotEmpty
         ? ((255 - greenColor) / text.length).toInt()
