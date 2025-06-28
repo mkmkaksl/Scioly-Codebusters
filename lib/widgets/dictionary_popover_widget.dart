@@ -3,14 +3,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projects/library.dart';
 
 class DictionaryPopoverWidget extends ConsumerWidget {
-  final String gameKey;
-  const DictionaryPopoverWidget({super.key, required this.gameKey});
+  final String gameId;
+  final GameMode gameMode;
+  const DictionaryPopoverWidget({
+    super.key,
+    required this.gameId,
+    required this.gameMode,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final gameKey = "$gameId|${gameMode.name}";
     final keyboard = ref.read(keyboardProvider(gameKey).notifier);
     final provider = ref.read(gameProvider(gameKey).notifier);
-    GameMode gameMode = ref.watch(gameModeProvider(gameKey));
     final scrollController = ref.watch(scrollProvider(gameKey));
     final selectedIdx = ref.watch(
       gameProvider(gameKey).select((s) => s.selectedIdx),
@@ -82,6 +87,7 @@ class DictionaryPopoverWidget extends ConsumerWidget {
                       var curWord = word.toUpperCase().split("");
                       if (gameMode == GameMode.assisted) {
                         curWord = curWord.toSet().toList();
+                        debugPrint("hi");
                       }
                       provider.selectCell(wordStart);
                       for (int j = 0; j < word.length; j++) {

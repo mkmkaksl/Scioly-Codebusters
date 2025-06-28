@@ -74,7 +74,10 @@ class GamePage extends ConsumerWidget {
               AnimatedBuilder(
                 animation: scrollController,
                 builder: (context, child) {
-                  return DictionaryPopoverWidget(gameKey: key);
+                  return DictionaryPopoverWidget(
+                    gameId: gameId,
+                    gameMode: gameMode,
+                  );
                 },
               ),
               Positioned(

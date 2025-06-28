@@ -56,11 +56,6 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // const Image(
-                      //   image: AssetImage("../../codebusters-logo.png"),
-                      //   fit: BoxFit.fitWidth,
-                      // ),
-                      // VerticalTextLineWidget(text: "TESTING"),
                       const SizedBox(height: 50),
                       HomeLogo(),
                       const SizedBox(height: 50),

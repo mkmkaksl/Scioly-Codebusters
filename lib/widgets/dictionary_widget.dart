@@ -16,7 +16,7 @@ class DictionaryWidget extends StatelessWidget {
         child: ListView.separated(
           padding: const EdgeInsets.all(16),
           itemCount: entries.length,
-          separatorBuilder: (_, __) => const SizedBox(height: 24),
+          separatorBuilder: (_, _) => const SizedBox(height: 24),
           itemBuilder: (context, index) {
             final entry = entries[index];
             return Column(
