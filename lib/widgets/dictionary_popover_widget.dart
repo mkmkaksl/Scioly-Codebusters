@@ -35,7 +35,8 @@ class DictionaryPopoverWidget extends ConsumerWidget {
         trackVisibility: true,
         thumbVisibility: true,
         child: Container(
-          width: (containerWidth + padding) * word.length - padding,
+          //width: (containerWidth + padding) * word.length - padding,
+          width: screenW,
           height: containerHeight * 2,
           color: Colors.black,
           child: SingleChildScrollView(

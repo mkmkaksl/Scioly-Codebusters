@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
               child: Center(
                 child: SizedBox(
                   width: screenW,
-                  height: screenH,
+                  //height: screenH,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [

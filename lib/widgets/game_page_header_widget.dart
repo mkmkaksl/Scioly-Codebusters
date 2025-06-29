@@ -44,11 +44,11 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
   }
 
   void _onEnter(PointerEnterEvent details) {
-    _animationController.forward();
+    if (mounted) _animationController.forward();
   }
 
   void _onExit(PointerExitEvent? details) {
-    _animationController.reverse();
+    if (mounted) _animationController.reverse();
   }
 
   @override
@@ -115,9 +115,11 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
                 GestureDetector(
                   onTapUp: (TapUpDetails details) {
                     widget.provider.hint();
-                    _animationController.reverse();
+                    if (mounted) _animationController.reverse();
                   },
-                  onTapDown: (details) => _animationController.forward(),
+                  onTapDown: (details) {
+                    if (mounted) _animationController.forward();
+                  },
                   child: MouseRegion(
                     onEnter: _onEnter,
                     onExit: _onExit,
