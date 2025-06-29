@@ -109,7 +109,7 @@ class GamePage extends ConsumerWidget {
                   left: 0,
                   right: 0,
                   bottom: 0,
-                  child: KeyboardWidget(gameId: key, language: language),
+                  child: KeyboardWidget(gameKey: key, language: language),
                 ),
               ],
             ),

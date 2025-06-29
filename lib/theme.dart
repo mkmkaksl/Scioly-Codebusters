@@ -11,8 +11,8 @@ const containerWidth = 22.0;
 const containerHeight = containerWidth * 1.25;
 const decorationHeight = containerWidth * 0.7;
 const padding = 4.0;
-var screenW = LayoutConfig.width;
-var screenH = LayoutConfig.height;
+final screenW = LayoutConfig.width;
+final screenH = LayoutConfig.height;
 double get maxLength => (screenW * 0.9) - insetPadding * 2;
 //styling for keyboard
 const double spacing = 4;

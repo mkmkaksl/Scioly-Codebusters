@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projects/library.dart';
 
@@ -92,7 +93,10 @@ class GameProvider extends FamilyNotifier<Game, String> {
   }
 
   void undo() {
-    if (state.history.isEmpty) return;
+    if (state.history.isEmpty) {
+      debugPrint("No history to undo");
+      return;
+    }
     bool isCorrect = state.isCorrect;
     bool showCorrect = state.showCorrect;
     bool usedHints = state.usedHints;
@@ -139,6 +143,7 @@ class GameProvider extends FamilyNotifier<Game, String> {
       showComplete: true,
       showCorrect: true,
     );
+    markCorrect();
   }
 
   void setPopup(bool value) {
@@ -146,7 +151,7 @@ class GameProvider extends FamilyNotifier<Game, String> {
   }
 
   void destroy() {
-    state = Game(quote: Quote());
+    state = Game(quote: Quote(), selectedIdx: -1);
   }
 
   void buildCryptogram(GameMode gameMode, Language language, String gameId) {

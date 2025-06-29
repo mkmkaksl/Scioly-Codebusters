@@ -53,6 +53,11 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
 
   @override
   Widget build(BuildContext context) {
+    final gameState = ref.watch(gameProvider(widget.gameKey));
+    if (gameState.cells.isEmpty) {
+      // Or whatever condition means "empty"
+      return const SizedBox.shrink();
+    }
     final showCorrect = ref.watch(
       gameProvider(widget.gameKey).select((s) => s.showCorrect),
     );

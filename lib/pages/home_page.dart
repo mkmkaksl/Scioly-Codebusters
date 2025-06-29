@@ -8,8 +8,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LayoutConfig.init(context);
-    double screenH = LayoutConfig.height;
-    double screenW = LayoutConfig.width;
 
     return Container(
       decoration: AppTheme.backgroundGradient,

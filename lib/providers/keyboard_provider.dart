@@ -31,8 +31,7 @@ class KeyboardProvider extends FamilyNotifier<Keyboard, String> {
   }
 
   void undo() {
-    if (state.history.isEmpty) return;
-    state = state.history.last;
+    if (state.history.isNotEmpty) state = state.history.last;
     ref.read(gameProvider(arg).notifier).undo();
   }
 
@@ -44,6 +43,11 @@ class KeyboardProvider extends FamilyNotifier<Keyboard, String> {
     final newHistory = [...state.history, state.copyWith()];
     state = state.copyWith(pressedKeys: {}, history: newHistory);
     ref.read(gameProvider(arg).notifier).reset();
+  }
+
+  void saveHistory() {
+    state = state.copyWith(history: [...state.history, state.copyWith()]);
+    ref.read(gameProvider(arg).notifier).saveHistory();
   }
 }
 

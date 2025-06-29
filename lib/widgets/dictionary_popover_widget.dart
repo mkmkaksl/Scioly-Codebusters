@@ -23,7 +23,6 @@ class DictionaryPopoverWidget extends ConsumerWidget {
     final cells = ref.watch(gameProvider(gameKey).select((s) => s.cells));
     final newWords = getSuggestedWords(cells, selectedIdx);
     int wordStart = getWordStart(selectedIdx, cells);
-    String word = getWord(wordStart, cells);
 
     return Positioned(
       bottom: keyboardH,
@@ -35,7 +34,6 @@ class DictionaryPopoverWidget extends ConsumerWidget {
         trackVisibility: true,
         thumbVisibility: true,
         child: Container(
-          //width: (containerWidth + padding) * word.length - padding,
           width: screenW,
           height: containerHeight * 2,
           color: Colors.black,
@@ -48,7 +46,7 @@ class DictionaryPopoverWidget extends ConsumerWidget {
                   return DictionaryPopoverSuggestionWidget(
                     text: word,
                     onPressed: () {
-                      provider.saveHistory();
+                      keyboard.saveHistory();
                       var curWord = word.toUpperCase().split("");
                       if (gameMode == GameMode.assisted) {
                         curWord = curWord.toSet().toList();
