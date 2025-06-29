@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projects/library.dart';
 
@@ -72,14 +71,6 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
   void dispose() {
     _animationController.dispose();
     super.dispose();
-  }
-
-  void _onEnter(PointerEnterEvent details) {
-    _animationController.forward();
-  }
-
-  void _onExit(PointerExitEvent? details) {
-    _animationController.reverse();
   }
 
   void _onTapUp(TapUpDetails details) {
