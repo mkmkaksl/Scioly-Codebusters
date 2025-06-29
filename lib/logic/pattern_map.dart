@@ -17,6 +17,9 @@ String getPatternKey(String word) {
 }
 
 List<String> getSuggestedWords(List<Cell> cells, int selectedIdx) {
+  if (cells.isEmpty || selectedIdx < 0 || selectedIdx >= cells.length) {
+    return [];
+  }
   int wordStart = getWordStart(selectedIdx, cells);
   String typed = "";
   for (int j = wordStart; !cells[j].isException; j++) {
@@ -35,6 +38,9 @@ List<String> getSuggestedWords(List<Cell> cells, int selectedIdx) {
 }
 
 int getWordStart(int i, List<Cell> cells) {
+  if (cells.isEmpty || i < 0 || i >= cells.length) {
+    return 0;
+  }
   while (!cells[i].isException && i >= 0) {
     i--;
   }
@@ -42,6 +48,9 @@ int getWordStart(int i, List<Cell> cells) {
 }
 
 String getWord(int wordStart, List<Cell> cells) {
+  if (cells.isEmpty || wordStart < 0 || wordStart >= cells.length) {
+    return "";
+  }
   String word = "";
   for (int j = wordStart; !cells[j].isException; j++) {
     word += cells[j].plainText;

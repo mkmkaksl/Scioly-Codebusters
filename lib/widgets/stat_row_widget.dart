@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projects/library.dart';
 
 class StatRowWidget extends ConsumerStatefulWidget {
   final String title;

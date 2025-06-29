@@ -53,6 +53,9 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
 
   @override
   Widget build(BuildContext context) {
+    final showCorrect = ref.watch(
+      gameProvider(widget.gameKey).select((s) => s.showCorrect),
+    );
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
@@ -76,7 +79,7 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
                         width: 1,
                       ),
                       color: AppTheme.logoGreen.withAlpha(
-                        widget.showCorrect ? 75 : 50,
+                        showCorrect ? 75 : 50,
                       ),
                     ),
                     child: Center(
@@ -96,9 +99,9 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
                           checkColor: Colors.white,
                           activeColor: AppTheme.logoGreen,
                           side: const BorderSide(color: AppTheme.logoGreen),
-                          value: widget.showCorrect,
+                          value: showCorrect,
                           onChanged: (bool? value) {
-                            if (widget.showCorrect) {
+                            if (showCorrect) {
                               widget.provider.markIncorrect();
                             } else {
                               widget.provider.markCorrect();

@@ -158,6 +158,7 @@ class GameProvider extends FamilyNotifier<Game, String> {
 
   //timer widget uses in init state
   bool isCorrect() => state.isCorrect;
+  bool showCorrect() => state.showCorrect;
   int cellCount() => state.cells.length;
 
   /* for Patristocrats

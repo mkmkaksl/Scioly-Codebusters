@@ -51,7 +51,6 @@ class DictionaryPopoverWidget extends ConsumerWidget {
                       var curWord = word.toUpperCase().split("");
                       if (gameMode == GameMode.assisted) {
                         curWord = curWord.toSet().toList();
-                        debugPrint("hi");
                       }
                       provider.selectCell(wordStart);
                       for (int j = 0; j < word.length; j++) {
