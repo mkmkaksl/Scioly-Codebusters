@@ -74,14 +74,6 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
     super.dispose();
   }
 
-  void _onEnter(PointerEnterEvent details) {
-    _animationController.forward();
-  }
-
-  void _onExit(PointerExitEvent? details) {
-    _animationController.reverse();
-  }
-
   void _onTapUp(TapUpDetails details) {
     _animationController.reverse();
     widget.onPressed();

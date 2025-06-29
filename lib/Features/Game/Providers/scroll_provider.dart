@@ -12,6 +12,7 @@ class ScrollControllerNotifier
     return controller;
   }
 
+  // alter algorithm for if the dicitionary popover is there
   void scrollToSelected(double position) {
     if (!state.hasClients) return;
     var scrollHeight =
