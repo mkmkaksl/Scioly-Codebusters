@@ -34,7 +34,6 @@ export 'Features/Statistics/stats_page.dart';
 export 'Features/Statistics/Widgets/stat_box_widget.dart';
 export 'Features/Statistics/Widgets/stat_row_widget.dart';
 export 'Features/Dictionary/Widgets/dictionary_popover_widget.dart';
-export 'Features/Dictionary/Widgets/dictionary_popover_suggestion_widget.dart';
 export 'Shared/widgets/heading_widget.dart';
 export 'Features/Keyboard/Widgets/keyboard_key_widget.dart';
 export 'Shared/widgets/game_page_header_widget.dart';
