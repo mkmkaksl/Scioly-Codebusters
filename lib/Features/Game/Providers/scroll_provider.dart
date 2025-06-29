@@ -22,7 +22,7 @@ class ScrollControllerNotifier
         containerHeight * 2;
     if ((position - state.offset) > scrollHeight) {
       state.animateTo(
-        position - (scrollHeight / 2),
+        position - (scrollHeight) + (containerHeight + 2 * decorationHeight),
         duration: Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
