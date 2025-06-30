@@ -1,5 +1,6 @@
-final List<String> wordList =
-    """a
+final List<String> englishWordList =
+    """don't
+a
 ability
 able
 about

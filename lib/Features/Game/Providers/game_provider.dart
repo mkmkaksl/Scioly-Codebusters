@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projects/library.dart';
 
@@ -56,6 +55,8 @@ class GameProvider extends FamilyNotifier<Game, String> {
       cells: [...state.cells].selectCell(index),
       selectedIdx: index,
     );
+    if (state.showCorrect) markCorrect();
+    if (!state.showCorrect) markIncorrect();
     if (state.gameMode == GameMode.assisted) {
       state = state.copyWith(cells: [...state.cells].highlightCells(index));
     }
@@ -93,10 +94,7 @@ class GameProvider extends FamilyNotifier<Game, String> {
   }
 
   void undo() {
-    if (state.history.isEmpty) {
-      debugPrint("No history to undo");
-      return;
-    }
+    if (state.history.isEmpty) return;
     bool isCorrect = state.isCorrect;
     bool showCorrect = state.showCorrect;
     bool usedHints = state.usedHints;
