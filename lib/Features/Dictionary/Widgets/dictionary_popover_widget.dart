@@ -27,7 +27,7 @@ class DictionaryPopoverWidget extends ConsumerWidget {
     final newWords = getSuggestedWords(cells, selectedIdx, patternMap);
     int wordStart = getWordStart(selectedIdx, cells);
 
-    Color suggestionColor = Colors.blueAccent;
+    Color suggestionColor = Colors.lightBlueAccent;
 
     return Positioned(
       bottom: keyboardH,

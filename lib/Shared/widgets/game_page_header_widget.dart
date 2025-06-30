@@ -94,7 +94,10 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
                             style: TextStyle(
                               color: showCorrectColor,
                               fontFamily: 'JetBrainsMonoBold',
-                              fontSize: 12,
+                              fontSize:
+                                  widget.gameKey == "Aristocrats (Assisted)"
+                                  ? 12
+                                  : 15,
                             ),
                           ),
                           controlAffinity: ListTileControlAffinity.leading,
