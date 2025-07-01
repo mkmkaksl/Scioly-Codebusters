@@ -5,12 +5,12 @@ enum GameMode { assisted, manual }
 class Game {
   final int selectedIdx;
   final Quote quote;
-  final bool isCorrect;
-  final bool showCorrect;
-  final bool showSuggestions;
-  final bool usedHints;
-  final bool isPerfect;
-  final bool showComplete;
+  final bool isCorrect; //when true, can edit quote but timer stopped
+  final bool showCorrect; //highlights correct values
+  final bool showSuggestions; //shows dictionary suggestions
+  final bool usedHints; //if true, auto 1 star
+  final bool isPerfect; //if true and usedHints false, 3 star
+  final bool showComplete; //shows end card
   final List<Game> history; //stores previous states, not itself
   final List<Cell> cells;
   final GameMode gameMode;

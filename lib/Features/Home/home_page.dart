@@ -121,6 +121,21 @@ class HomePage extends StatelessWidget {
                           );
                         },
                       ),
+                      const SizedBox(height: 25),
+                      HomeButtonWidget(
+                        btnText: "View Solved Puzzles",
+                        neonColor: Colors.pinkAccent,
+                        num: "05",
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => QuoteHomePage(),
+                            ),
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 25),
                     ],
                   ),
                 ),

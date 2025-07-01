@@ -1,0 +1,26 @@
+import 'package:projects/library.dart';
+import 'package:flutter/material.dart';
+
+class QuoteHomePage extends StatelessWidget {
+  const QuoteHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Quotes'),
+          bottom: const TabBar(
+            tabs: [
+              Tab(text: 'All Quotes'),
+              Tab(text: 'Favorites'),
+            ],
+          ),
+        ),
+        body: const TabBarView(children: [AllQuotesTab(), FavoritesTab()]),
+        //floatingActionButton: const AddQuoteButton(),
+      ),
+    );
+  }
+}

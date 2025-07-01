@@ -8,7 +8,10 @@ class GameProvider extends FamilyNotifier<Game, String> {
   }
 
   void setSuggestions(bool value) {
-    state = state.copyWith(showSuggestions: value);
+    state = state.copyWith(
+      showSuggestions: value,
+      usedHints: value ? true : state.usedHints,
+    );
   }
 
   void setPopup(bool value) {
@@ -105,12 +108,14 @@ class GameProvider extends FamilyNotifier<Game, String> {
     if (state.history.isEmpty) return;
     bool isCorrect = state.isCorrect;
     bool showCorrect = state.showCorrect;
+    bool showSuggestions = state.showSuggestions;
     bool usedHints = state.usedHints;
     state = state.history.last;
     state = state.copyWith(
       isCorrect: isCorrect,
       showCorrect: showCorrect,
       usedHints: usedHints,
+      showSuggestions: showSuggestions,
       isPerfect: false,
     );
     selectCell(state.selectedIdx);
@@ -132,9 +137,22 @@ class GameProvider extends FamilyNotifier<Game, String> {
       if (state.cells[i].text != state.cells[i].plainText) return;
     }
     ref.read(timerProvider(arg).notifier).pause();
-    double time = ref.read(timerProvider(arg).notifier).getTime().toDouble();
-    final statsNotifier = ref.read(gameModeStatsProvider(arg).notifier);
-    statsNotifier.addSolve(time);
+    final time = ref.read(timerProvider(arg).notifier).getTime().toDouble();
+    var stars = 2;
+    if (state.usedHints == true) {
+      stars = 1;
+    } else if (state.isPerfect) {
+      stars = 3;
+    }
+    final newQuote = SolvedQuote(
+      text: "Quote: ${state.quote.ogQuote}",
+      author: "Author: Benjamin Franklin",
+      rating: stars,
+      solveTime: time,
+      gameMode: arg,
+    );
+    ref.read(gameModeStatsProvider(arg).notifier).addSolve(time);
+    ref.read(quoteListProvider.notifier).addQuote(newQuote);
     state = state.copyWith(
       isCorrect: true,
       showComplete: true,
@@ -146,6 +164,7 @@ class GameProvider extends FamilyNotifier<Game, String> {
   void hint() {
     String letter = state.cells[state.selectedIdx].plainText;
     ref.read(keyboardProvider(arg).notifier).pressKey(letter, true);
+    state = state.copyWith(usedHints: true);
   }
 
   void saveHistory() {
