@@ -20,13 +20,12 @@ String getPatternKey(String word) {
 
 List<String> getSuggestedWords(
   List<Cell> cells,
-  int selectedIdx,
+  int wordStart,
   Map<String, List<String>> dictionary,
 ) {
-  if (cells.isEmpty || selectedIdx < 0 || selectedIdx >= cells.length) {
+  if (cells.isEmpty) {
     return [];
   }
-  int wordStart = getWordStart(selectedIdx, cells);
   String typed = "";
   for (int j = wordStart; !cells[j].isException; j++) {
     typed += cells[j].text == "" ? "*" : cells[j].text;

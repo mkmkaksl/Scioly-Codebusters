@@ -9,7 +9,7 @@ class PatternMap {
 
   PatternMap();
   PatternMap.fromList(List<String> list) {
-    for (var word in englishWordList) {
+    for (var word in list) {
       addWord(word);
     }
   }

@@ -21,6 +21,7 @@ export 'Features/Quotes/Util/quote_library.dart';
 export 'Features/Dictionary/Models/pattern_map.dart';
 export 'Features/Dictionary/Util/dictionary_util.dart';
 export 'Features/Dictionary/Providers/pattern_map_provider.dart';
+export 'Features/Dictionary/Widgets/dictionary_tab.dart';
 
 export 'Features/Game/Widgets/cryptogram_grid_widget.dart';
 export 'Features/Game/Widgets/cell_widget.dart';
@@ -37,7 +38,7 @@ export 'Features/Statistics/Widgets/stat_row_widget.dart';
 export 'Features/Dictionary/Widgets/dictionary_popover_widget.dart';
 export 'Shared/widgets/heading_widget.dart';
 export 'Features/Keyboard/Widgets/keyboard_key_widget.dart';
-export 'Shared/widgets/game_page_header_widget.dart';
+export 'Features/Game/Widgets/game_page_header_widget.dart';
 export 'Shared/widgets/styled_button_widget.dart';
 
 export 'Features/Home/painters/vertical_text.dart';

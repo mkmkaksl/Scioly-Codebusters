@@ -28,7 +28,8 @@ his
 from
 that
 not
-n't
+I'm
+I'd
 by
 she
 or
@@ -224,6 +225,7 @@ large
 all
 million
 must
+don't
 home
 under
 water
@@ -308,6 +310,7 @@ learn
 real
 change
 team
+didn't
 minute
 best
 several
@@ -500,6 +503,7 @@ difference
 thank
 receive
 value
+can't
 international
 building
 action
@@ -638,6 +642,7 @@ daughter
 administration
 south
 husband
+couldn't
 Congress
 floor
 campaign
@@ -805,6 +810,7 @@ election
 everybody
 physical
 lay
+won't
 general
 feeling
 standard
@@ -818,6 +824,7 @@ benefit
 name
 sex
 forward
+wasn't
 lawyer
 present
 section
@@ -893,11 +900,13 @@ final
 main
 science
 green
+isn't
 memory
 card
 above
 seat
 cell
+wouldn't
 establish
 nice
 trial
@@ -917,6 +926,7 @@ huge
 ball
 no
 close
+doesn't
 finish
 yourself
 talk

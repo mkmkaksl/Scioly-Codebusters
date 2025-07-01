@@ -1,6 +1,7 @@
 v.2.0.0
 1. Make styling for game page better - Manoj
     - Highlight the mistakes red
+    - Modify show correct font size
     - Display quotes need to look better + Author
     - Continue button (reconsideration)
 2. Add logs (gameId, quote, stars, time) (perfect solves can be highlighted) for quotes solved + favorite quotes - Suvan
@@ -10,8 +11,7 @@ v.2.0.0
 6. Dictionary Suggestions: - Suvan (manoj after second dictionary added)
     - DEBUG Undo - done
     - Contractions fix - done
-    - Rank words by frequency
-    - Secondary dictionary with keywords rather than all words (toggle in view dictionary) - remove
+    - Rank words by frequency - done
     - Search dictionary
     - Toggle switch implementation for the two different dictionaries - Manoj
 7. Connect the quotes files - Manoj

@@ -4,14 +4,12 @@ import 'package:projects/library.dart';
 
 class GamePage extends ConsumerWidget {
   final String gameId;
-  final String dictionaryId;
   final GameMode gameMode;
   final Language language;
 
   const GamePage({
     super.key,
     required this.gameId,
-    required this.dictionaryId,
     required this.gameMode,
     required this.language,
   });
@@ -86,14 +84,14 @@ class GamePage extends ConsumerWidget {
                     ],
                   ),
                 ),
-                if (gameId == "Aristocrats" && showSuggestions)
+                if (showSuggestions)
                   AnimatedBuilder(
                     animation: scrollController,
                     builder: (context, child) {
                       return DictionaryPopoverWidget(
                         gameId: gameId,
                         gameMode: gameMode,
-                        dictionaryId: dictionaryId,
+                        dictionaryId: language.name,
                       );
                     },
                   ),

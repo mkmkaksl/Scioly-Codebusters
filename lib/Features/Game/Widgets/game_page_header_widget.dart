@@ -118,9 +118,9 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
                     ),
                   ),
                 ),
-                if (widget.gameKey == "Aristocrats (Assisted)")
+                if (!widget.gameKey.contains("Patristocrat"))
                   SizedBox(width: padding),
-                if (widget.gameKey == "Aristocrats (Assisted)")
+                if (!widget.gameKey.contains("Patristocrat"))
                   GestureDetector(
                     onTap: () {
                       provider.setSuggestions(!showSuggestions);

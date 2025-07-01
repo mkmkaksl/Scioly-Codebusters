@@ -7,6 +7,14 @@ class GameProvider extends FamilyNotifier<Game, String> {
     return Game(quote: Quote());
   }
 
+  void setSuggestions(bool value) {
+    state = state.copyWith(showSuggestions: value);
+  }
+
+  void setPopup(bool value) {
+    state = state.copyWith(showComplete: value);
+  }
+
   String setLetter(String letter, bool saveHistory) {
     int index = state.selectedIdx;
     String currLetter = state.cells[index].text;
@@ -48,10 +56,6 @@ class GameProvider extends FamilyNotifier<Game, String> {
       cells: [...state.cells].markIncorrect(),
       showCorrect: false,
     );
-  }
-
-  void setSuggestions(bool value) {
-    state = state.copyWith(showSuggestions: value);
   }
 
   void selectCell(int index) {
@@ -146,10 +150,6 @@ class GameProvider extends FamilyNotifier<Game, String> {
 
   void saveHistory() {
     state = state.copyWith(history: [...state.history, state.copyWith()]);
-  }
-
-  void setPopup(bool value) {
-    state = state.copyWith(showComplete: value);
   }
 
   void destroy() {

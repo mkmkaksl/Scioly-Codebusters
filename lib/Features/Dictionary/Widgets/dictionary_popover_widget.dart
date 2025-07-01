@@ -24,8 +24,8 @@ class DictionaryPopoverWidget extends ConsumerWidget {
       gameProvider(gameKey).select((s) => s.selectedIdx),
     );
     final cells = ref.watch(gameProvider(gameKey).select((s) => s.cells));
-    final newWords = getSuggestedWords(cells, selectedIdx, patternMap);
     int wordStart = getWordStart(selectedIdx, cells);
+    final newWords = getSuggestedWords(cells, wordStart, patternMap);
 
     Color suggestionColor = Colors.lightBlueAccent;
 
