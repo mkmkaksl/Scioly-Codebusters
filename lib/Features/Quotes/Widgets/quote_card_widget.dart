@@ -20,23 +20,22 @@ class QuoteCard extends StatelessWidget {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('\n- ${quote.author}'),
+            Text('\n  - ${quote.author}\n\n${quote.gameMode}'),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Row(
                   children: List.generate(
                     quote.rating,
-                    (index) => Icon(Icons.star, color: Colors.amber, size: 16),
+                    (index) => Icon(Icons.star, color: Colors.amber, size: 20),
                   ),
                 ),
+                SizedBox(width: 10),
                 Row(
                   children: [
-                    const Icon(Icons.timer, size: 16),
+                    const Icon(Icons.timer, size: 20),
                     Text('${quote.solveTime}s'),
                   ],
                 ),
-                Text(quote.gameMode),
               ],
             ),
           ],

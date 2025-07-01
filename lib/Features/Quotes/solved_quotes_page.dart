@@ -12,6 +12,7 @@ class QuoteHomePage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Quotes'),
           bottom: const TabBar(
+            unselectedLabelColor: Colors.white,
             tabs: [
               Tab(text: 'All Quotes'),
               Tab(text: 'Favorites'),

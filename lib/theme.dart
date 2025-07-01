@@ -33,10 +33,10 @@ Color gameCellColor = AppTheme.logoGreen;
 final appThemeProvider = AppTheme.theme;
 
 class AppTheme {
-  static const Color primary = Color(0xFFD32F2F);
+  static const Color primary = Color(0xFF00FF41);
   static const Color primaryLight = Color(0xFFD32F2F);
   static const Color primaryDark = Color(0xFF7F0000);
-  static const Color background = Colors.white;
+  static const Color background = Color(0xFF0a0a0a);
   static const Color appBarBackground = Colors.transparent;
   static const Color surface = Color(0xFFF5F5F5);
   static const Color accent = Color(0xFFEF5350); // Softer red
