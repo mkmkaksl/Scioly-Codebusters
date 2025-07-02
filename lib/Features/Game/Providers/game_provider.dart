@@ -110,12 +110,14 @@ class GameProvider extends FamilyNotifier<Game, String> {
     bool showCorrect = state.showCorrect;
     bool showSuggestions = state.showSuggestions;
     bool usedHints = state.usedHints;
+    int rating = state.rating;
     state = state.history.last;
     state = state.copyWith(
       isCorrect: isCorrect,
       showCorrect: showCorrect,
       usedHints: usedHints,
       showSuggestions: showSuggestions,
+      rating: rating,
       isPerfect: false,
     );
     selectCell(state.selectedIdx);
@@ -146,11 +148,12 @@ class GameProvider extends FamilyNotifier<Game, String> {
     }
     state = state.copyWith(rating: stars);
     final newQuote = SolvedQuote(
-      text: "Quote: ${state.quote.ogQuote}",
-      author: "Author: ${state.quote.author}",
+      text: state.quote.ogQuote,
+      author: state.quote.author,
       rating: stars,
       solveTime: time,
       gameMode: arg,
+      date: DateTime.now(),
     );
     ref.read(gameModeStatsProvider(arg).notifier).addSolve(time);
     ref.read(quoteListProvider.notifier).addQuote(newQuote);
