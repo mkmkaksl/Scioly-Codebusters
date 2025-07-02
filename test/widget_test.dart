@@ -12,13 +12,11 @@ import 'package:projects/library.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    final audioController = AudioController();
-    await audioController.initialize();
+    // final audioController = AudioController();
+    // await audioController.initialize();
 
     // Build our app and trigger a frame.
-    await tester.pumpWidget(
-      HomePage(audioCont: audioController),
-    ); //changed from MyApp
+    await tester.pumpWidget(HomePage()); //changed from MyApp
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
