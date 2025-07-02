@@ -48,6 +48,8 @@ export 'Features/Dictionary/Widgets/dictionary_popover_widget.dart';
 export 'Features/Dictionary/Widgets/dictionary_tab.dart';
 export 'Features/Dictionary/dictionary_page.dart';
 
+export 'Features/Audio/audio_controller.dart';
+
 export 'Shared/widgets/home_button_widget.dart';
 export 'Shared/widgets/heading_widget.dart';
 export 'Shared/widgets/styled_button_widget.dart';
