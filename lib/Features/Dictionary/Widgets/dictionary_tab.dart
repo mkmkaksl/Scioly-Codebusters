@@ -193,10 +193,6 @@ class _DictionaryTabState extends ConsumerState<DictionaryTab> {
                   onSubmitted: (_) => _onSearch(entries),
                 ),
               ),
-              // ElevatedButton(
-              //   onPressed: () => _onSearch(entries),
-              //   child: const Icon(Icons.search),
-              // ),
             ],
           ),
         ),
