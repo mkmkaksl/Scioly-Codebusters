@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:projects/library.dart';
 
 class HomePage extends StatelessWidget {
-  final AudioController audioCont;
-  const HomePage({super.key, required this.audioCont});
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

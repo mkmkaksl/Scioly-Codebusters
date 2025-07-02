@@ -10,18 +10,18 @@ import 'package:logging/logging.dart';
 final RouteObserver<ModalRoute<void>> routeObserver =
     RouteObserver<ModalRoute<void>>();
 void main() async {
-  Logger.root.level = kDebugMode ? Level.FINE : Level.INFO;
-  Logger.root.onRecord.listen((record) {
-    dev.log(
-      record.message,
-      time: record.time,
-      level: record.level.value,
-      name: record.loggerName,
-      zone: record.zone,
-      error: record.error,
-      stackTrace: record.stackTrace,
-    );
-  });
+  // Logger.root.level = kDebugMode ? Level.FINE : Level.INFO;
+  // Logger.root.onRecord.listen((record) {
+  //   dev.log(
+  //     record.message,
+  //     time: record.time,
+  //     level: record.level.value,
+  //     name: record.loggerName,
+  //     zone: record.zone,
+  //     error: record.error,
+  //     stackTrace: record.stackTrace,
+  //   );
+  // });
 
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
@@ -31,13 +31,13 @@ void main() async {
   await Hive.openBox<GameModeStats>('statsBox');
   await Hive.openBox<SolvedQuote>('quotesBox');
 
-  final audioController = AudioController();
-  await audioController.initialize();
+  // final audioController = AudioController();
+  // await audioController.initialize();
 
   runApp(
     ProviderScope(
       child: MaterialApp(
-        home: HomePage(audioCont: audioController),
+        home: HomePage(),
         theme: AppTheme.theme,
         debugShowCheckedModeBanner: false,
         navigatorObservers: [routeObserver],
