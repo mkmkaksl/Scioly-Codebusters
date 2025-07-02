@@ -24,6 +24,7 @@ export 'Features/Game/Widgets/cryptogram_grid_widget.dart';
 export 'Features/Game/Widgets/cell_widget.dart';
 export 'Features/Game/Widgets/timer_widget.dart';
 export 'Features/Game/Widgets/game_page_header_widget.dart';
+export 'Features/Game/Widgets/quote_display_widget.dart';
 export 'Features/Game/game_page.dart';
 
 export 'Features/Keyboard/Models/keyboard.dart';
@@ -46,6 +47,8 @@ export 'Features/Dictionary/Util/dictionary_util.dart';
 export 'Features/Dictionary/Widgets/dictionary_popover_widget.dart';
 export 'Features/Dictionary/Widgets/dictionary_tab.dart';
 export 'Features/Dictionary/dictionary_page.dart';
+
+export 'Features/Audio/audio_controller.dart';
 
 export 'Shared/widgets/home_button_widget.dart';
 export 'Shared/widgets/heading_widget.dart';

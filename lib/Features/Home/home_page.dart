@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:projects/library.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final AudioController audioCont;
+  const HomePage({super.key, required this.audioCont});
 
   @override
   Widget build(BuildContext context) {
     GameSetup.init(context);
+    audioCont.playSound("assets/music/bg.mp3");
 
     return Container(
       decoration: AppTheme.backgroundGradient,
