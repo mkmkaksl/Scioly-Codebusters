@@ -80,42 +80,6 @@ class QuoteCard extends StatelessWidget {
           ),
         ],
       ),
-      // child: ListTile(
-      //   title: Text(quote.text, style: TextStyle(color: color)),
-      //   subtitle: Column(
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     children: [
-      //       Text(
-      //         '\n  - ${quote.author}\n\n${quote.gameMode}',
-      //         style: TextStyle(color: color),
-      //       ),
-      //       Row(
-      //         children: [
-      //           Row(
-      //             children: List.generate(
-      //               quote.rating,
-      //               (index) => Icon(Icons.star, color: Colors.amber, size: 20),
-      //             ),
-      //           ),
-      //           SizedBox(width: 20),
-      //           Row(
-      //             children: [
-      //               Icon(Icons.timer, size: 20, color: color),
-      //               Text('${quote.solveTime}s', style: TextStyle(color: color)),
-      //             ],
-      //           ),
-      //         ],
-      //       ),
-      //     ],
-      //   ),
-      //   trailing: IconButton(
-      //     icon: Icon(
-      //       quote.isFavorite ? Icons.favorite : Icons.favorite_border,
-      //       color: quote.isFavorite ? color : Colors.grey,
-      //     ),
-      //     onPressed: onFavoriteToggle,
-      //   ),
-      // ),
     );
   }
 }

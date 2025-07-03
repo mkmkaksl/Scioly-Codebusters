@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projects/library.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +19,13 @@ class AllQuotesTab extends ConsumerWidget {
     return ListView.builder(
       itemCount: quotes.length,
       itemBuilder: (context, index) {
-        final quote = quotes[index];
+        final reverseIndex = quotes.length - 1 - index;
+        final quote = quotes[reverseIndex];
         return QuoteCard(
           quote: quote,
           color: colors[index % colors.length],
           onFavoriteToggle: () =>
-              ref.read(quoteListProvider.notifier).toggleFavorite(index),
+              ref.read(quoteListProvider.notifier).toggleFavorite(reverseIndex),
         );
       },
     );

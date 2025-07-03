@@ -18,7 +18,7 @@ class GamePageSetup extends ConsumerWidget {
     final gmProvider = ref.read(gameModeProvider(gameId).notifier);
     final gProvider = ref.read(gameProvider(key).notifier);
     var cellCount = ref.watch(gameProvider(key).select((s) => s.cells.length));
-    final stats = ref.watch(gameModeStatsProvider(key));
+    final stats = ref.watch(statsProvider(key));
     final buttonMargin = padding + 14;
 
     return Container(
@@ -93,21 +93,8 @@ class GamePageSetup extends ConsumerWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => StatsPage(
-                                      widgetKey: key,
-                                      fastestAllTime: stats.fastestSolve,
-                                      averageAllTime: stats.averageSolve,
-                                      fastestLast10: stats.fastestInLast(10),
-                                      averageLast10: stats.averageInLast(10),
-                                      fastestPrevious10: stats.fastestInLast(
-                                        20,
-                                        skip: 10,
-                                      ),
-                                      averagePrevious10: stats.averageInLast(
-                                        20,
-                                        skip: 10,
-                                      ),
-                                    ),
+                                    builder: (context) =>
+                                        StatsPage(widgetKey: key, stats: stats),
                                   ),
                                 );
                               },

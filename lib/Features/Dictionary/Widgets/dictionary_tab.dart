@@ -174,82 +174,6 @@ class _DictionaryTabState extends ConsumerState<DictionaryTab> {
     });
   }
 
-  Widget _buildEntry(
-    MapEntry<String, List<String>> entry,
-    int index,
-    Color curColor,
-  ) {
-    final isEntryHighlighted = index == _highlightedEntryIndex;
-    final entryKey = _entryKeys.putIfAbsent(index, () => GlobalKey());
-    return Container(
-      key: entryKey,
-      decoration: BoxDecoration(
-        color: Colors.black,
-        border: Border.all(
-          color: isEntryHighlighted ? Colors.yellow : curColor,
-          width: 2,
-        ),
-        boxShadow: [BoxShadow(color: curColor, blurRadius: 10)],
-      ),
-      padding: EdgeInsets.all(insetPadding),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          HeadingWidget(
-            neonColor: curColor,
-            title: entry.key,
-            num: (index + 1).toString(),
-            fontSize: 25,
-          ),
-          const SizedBox(height: padding + 10),
-          Wrap(
-            spacing: 8,
-            runSpacing: 4,
-            children: entry.value
-                .map(
-                  (word) =>
-                      _buildWord(word, index, curColor, isEntryHighlighted),
-                )
-                .toList(),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildWord(
-    String word,
-    int index,
-    Color curColor,
-    bool isEntryHighlighted,
-  ) {
-    final wordKey = _wordKeys.putIfAbsent('$index-$word', () => GlobalKey());
-    final isWordHighlighted =
-        isEntryHighlighted &&
-        _searchTerm != null &&
-        word.toLowerCase() == _searchTerm;
-    return Container(
-      key: wordKey,
-      decoration: BoxDecoration(
-        color: isWordHighlighted
-            ? Colors.yellow.withAlpha((0.2 * 255).toInt())
-            : Colors.black,
-        border: Border.all(
-          color: isWordHighlighted ? Colors.yellow : curColor,
-          width: 2,
-        ),
-      ),
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-      child: Text(
-        word,
-        style: TextStyle(
-          color: isWordHighlighted ? Colors.yellow[900] : curColor,
-          fontWeight: isWordHighlighted ? FontWeight.bold : FontWeight.normal,
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final entries = ref
@@ -310,12 +234,23 @@ class _DictionaryTabState extends ConsumerState<DictionaryTab> {
                     controller: widget.scrollController,
                     padding: const EdgeInsets.all(16),
                     itemCount: entries.length,
-                    separatorBuilder: (_, __) => const SizedBox(height: 24),
+                    separatorBuilder: (_, _) => const SizedBox(height: 24),
                     itemBuilder: (context, index) {
                       final entry = entries[index];
                       final curColor =
                           widget.colors[index % widget.colors.length];
-                      return _buildEntry(entry, index, curColor);
+                      return DictionaryEntryWidget(
+                        entry: entry,
+                        index: index,
+                        curColor: curColor,
+                        isEntryHighlighted: index == _highlightedEntryIndex,
+                        entryKey: _entryKeys.putIfAbsent(
+                          index,
+                          () => GlobalKey(),
+                        ),
+                        wordKeys: _wordKeys,
+                        searchTerm: _searchTerm,
+                      );
                     },
                   ),
                 ),
@@ -325,7 +260,7 @@ class _DictionaryTabState extends ConsumerState<DictionaryTab> {
         ),
         if (_isJumping)
           Container(
-            color: Colors.black.withOpacity(0.4),
+            color: Colors.black.withAlpha((0.4 * 255).toInt()),
             child: const Center(child: CircularProgressIndicator()),
           ),
       ],

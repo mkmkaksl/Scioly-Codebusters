@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projects/library.dart';
 import 'package:flutter/material.dart';
@@ -18,15 +17,21 @@ class FavoritesTab extends ConsumerWidget {
     ];
 
     return favorites.isEmpty
-        ? const Center(child: Text("No favorite quotes yet."))
+        ? const Center(
+            child: Text(
+              "No favorite quotes yet.",
+              style: TextStyle(color: Colors.white),
+            ),
+          )
         : ListView.builder(
             itemCount: favorites.length,
             itemBuilder: (context, index) {
-              final quote = favorites[index];
+              final reverseIndex = favorites.length - 1 - index;
+              final quote = favorites[reverseIndex];
               final quoteIndex = ref.read(quoteListProvider).indexOf(quote);
               return QuoteCard(
                 quote: quote,
-                color: colors[index],
+                color: colors[index % colors.length],
                 onFavoriteToggle: () => ref
                     .read(quoteListProvider.notifier)
                     .toggleFavorite(quoteIndex),

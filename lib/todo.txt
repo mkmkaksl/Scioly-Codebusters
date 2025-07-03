@@ -21,12 +21,13 @@ v.2.0.0
     - Add more quotes to the file + fix errors
     - Static methods
 8. Stats - Suvan
-    - Add total solved
+    - Add total solved - done
+    - Make time in decimals
 10. How to play: - Suvan
     - Link video AND detailed infographic
 11. ScrollContainer bugs when scrolling to end (check if dictionary popover is present) - done
 12. Update Scioly logo (maybe add intro animation when app opens)
-13. Make Game Setup Buttons look better
+13. Make Game Setup Buttons look better (not aligned), and button presses clear (check why web looks weird): eg. highlight dictionary button
     
 
 -- video showcasing features --

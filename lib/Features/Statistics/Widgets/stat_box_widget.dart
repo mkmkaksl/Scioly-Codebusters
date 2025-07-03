@@ -8,6 +8,7 @@ class StatBoxWidget extends ConsumerStatefulWidget {
   final Color neonColor;
   final String fastest;
   final String average;
+  final String solved;
 
   const StatBoxWidget({
     super.key,
@@ -16,6 +17,7 @@ class StatBoxWidget extends ConsumerStatefulWidget {
     required this.neonColor,
     required this.fastest,
     required this.average,
+    required this.solved,
   });
 
   @override
@@ -46,12 +48,17 @@ class _StatBoxWidgetState extends ConsumerState<StatBoxWidget> {
           StatRowWidget(
             title: "Fastest",
             neonColor: widget.neonColor,
-            value: widget.fastest,
+            value: "${widget.fastest}s",
           ),
           StatRowWidget(
             title: "Average",
             neonColor: widget.neonColor,
-            value: widget.average,
+            value: "${widget.average}s",
+          ),
+          StatRowWidget(
+            title: "Total Solved",
+            neonColor: widget.neonColor,
+            value: widget.solved,
           ),
         ],
       ),

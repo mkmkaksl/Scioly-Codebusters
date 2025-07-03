@@ -9,6 +9,7 @@ export 'Features/Game Setup/Providers/game_mode_provider.dart';
 export 'Features/Game Setup/Util/game_setup_library.dart';
 export 'Features/Game Setup/game_setup_page.dart';
 
+export 'Features/Statistics/Models/quote_stats.dart';
 export 'Features/Statistics/Providers/stats_provider.dart';
 export 'Features/Statistics/Widgets/stat_box_widget.dart';
 export 'Features/Statistics/Widgets/stat_row_widget.dart';
@@ -46,6 +47,8 @@ export 'Features/Dictionary/Providers/pattern_map_provider.dart';
 export 'Features/Dictionary/Util/dictionary_util.dart';
 export 'Features/Dictionary/Widgets/dictionary_popover_widget.dart';
 export 'Features/Dictionary/Widgets/dictionary_tab.dart';
+export 'Features/Dictionary/Widgets/dictionary_entry_widget.dart';
+export 'Features/Dictionary/Widgets/dictionary_word_widget.dart';
 export 'Features/Dictionary/dictionary_page.dart';
 
 export 'Features/Audio/audio_controller.dart';

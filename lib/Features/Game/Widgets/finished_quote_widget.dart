@@ -17,7 +17,7 @@ class FinishedQuoteWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = ref.read(gameProvider(gameKey).notifier);
 
-    final time = ref.read(timerProvider(gameKey).notifier).getTime().toDouble();
+    final time = ref.read(timerProvider(gameKey).notifier).getTime();
     int rating = ref.watch(gameProvider(gameKey).select((s) => s.rating));
     List<Icon> stars = [];
     for (int i = 0; i < rating; i++) {

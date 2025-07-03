@@ -139,7 +139,7 @@ class GameProvider extends FamilyNotifier<Game, String> {
       if (state.cells[i].text != state.cells[i].plainText) return;
     }
     ref.read(timerProvider(arg).notifier).pause();
-    final time = ref.read(timerProvider(arg).notifier).getTime().toDouble();
+    final time = ref.read(timerProvider(arg).notifier).getTime();
     var stars = 2;
     if (state.usedHints == true) {
       stars = 1;
@@ -155,7 +155,6 @@ class GameProvider extends FamilyNotifier<Game, String> {
       gameMode: arg,
       date: DateTime.now(),
     );
-    ref.read(gameModeStatsProvider(arg).notifier).addSolve(time);
     ref.read(quoteListProvider.notifier).addQuote(newQuote);
     state = state.copyWith(isCorrect: true, showComplete: true);
     markCorrect();

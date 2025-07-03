@@ -59,7 +59,8 @@ class TimerNotifier extends FamilyNotifier<int, String> {
     _tick?.cancel();
   }
 
-  int getTime() => _stopwatch.elapsed.inSeconds;
+  double getTime() =>
+      (_stopwatch.elapsed.inMilliseconds / 10).roundToDouble() / 100;
 }
 
 final timerProvider = NotifierProvider.family<TimerNotifier, int, String>(

@@ -43,7 +43,7 @@ class _StatRowWidgetState extends ConsumerState<StatRowWidget> {
           ),
           Spacer(),
           Text(
-            "${widget.value}s",
+            widget.value,
             style: TextStyle(
               color: widget.neonColor,
               fontSize: 18,

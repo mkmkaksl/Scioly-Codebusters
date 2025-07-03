@@ -1,31 +1,51 @@
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projects/library.dart';
 
-final statsBoxProvider = Provider<Box<GameModeStats>>((ref) {
-  return Hive.box<GameModeStats>('statsBox');
+final statsProvider = Provider.family<QuoteStats, String>((ref, gameModeKey) {
+  final allQuotes = ref.watch(quoteListProvider);
+  final quotes = allQuotes.where((q) => q.gameMode == gameModeKey).toList();
+
+  final now = DateTime.now();
+  final startOfThisWeek = now.subtract(Duration(days: now.weekday - 1));
+  final startOfLastWeek = startOfThisWeek.subtract(const Duration(days: 7));
+
+  bool isSameDay(DateTime a, DateTime b) =>
+      a.year == b.year && a.month == b.month && a.day == b.day;
+
+  List<SolvedQuote> thisWeek = quotes
+      .where(
+        (q) =>
+            q.date.isAfter(startOfThisWeek) ||
+            isSameDay(q.date, startOfThisWeek),
+      )
+      .toList();
+
+  List<SolvedQuote> lastWeek = quotes
+      .where(
+        (q) =>
+            (q.date.isAfter(startOfLastWeek) ||
+                isSameDay(q.date, startOfLastWeek)) &&
+            q.date.isBefore(startOfThisWeek),
+      )
+      .toList();
+
+  double avg(List<SolvedQuote> qs) => qs.isEmpty
+      ? 0
+      : qs.map((q) => q.solveTime).reduce((a, b) => a + b) / qs.length;
+
+  double fastest(List<SolvedQuote> qs) => qs.isEmpty
+      ? 0
+      : qs.map((q) => q.solveTime).reduce((a, b) => a < b ? a : b);
+
+  return QuoteStats(
+    avgSolveTimeAll: avg(quotes),
+    avgSolveTimeThisWeek: avg(thisWeek),
+    avgSolveTimeLastWeek: avg(lastWeek),
+    fastestSolveTimeAll: fastest(quotes),
+    fastestSolveTimeThisWeek: fastest(thisWeek),
+    fastestSolveTimeLastWeek: fastest(lastWeek),
+    totalSolvedAll: quotes.length,
+    totalSolvedThisWeek: thisWeek.length,
+    totalSolvedLastWeek: lastWeek.length,
+  );
 });
-
-final gameModeStatsProvider =
-    StateNotifierProvider.family<GameModeStatsNotifier, GameModeStats, String>((
-      ref,
-      gameMode,
-    ) {
-      final box = ref.watch(statsBoxProvider);
-      return GameModeStatsNotifier(gameMode, box);
-    });
-
-class GameModeStatsNotifier extends StateNotifier<GameModeStats> {
-  final String gameMode;
-  final Box<GameModeStats> box;
-
-  GameModeStatsNotifier(this.gameMode, this.box)
-    : super(box.get(gameMode) ?? GameModeStats(solveRecords: []));
-
-  void addSolve(double time) {
-    state.addSolve(time);
-    box.put(gameMode, state);
-    state = GameModeStats(solveRecords: List.from(state.solveRecords));
-  }
-}
