@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => const GamePageSetup(
-                                gameId: "Aristocrats",
+                                gameId: "Aristocrat",
                                 language: Language.english,
                               ),
                             ),

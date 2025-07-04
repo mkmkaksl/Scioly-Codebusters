@@ -22,7 +22,7 @@ v.2.0.0
     - Static methods
 8. Stats - Suvan
     - Add total solved - done
-    - Make time in decimals
+    - Make time in decimals - done
 10. How to play: - Suvan
     - Link video AND detailed infographic
 11. ScrollContainer bugs when scrolling to end (check if dictionary popover is present) - done
@@ -40,6 +40,7 @@ v.2.1.0
 3. [consideration]: Saving unsolved quotes for later to move on for now
 4. Test out Hive capabilties
 5. Add/Delete spaces button for patristocrat
+6. Spanish translations
 
 -- Youtube videos after 2.1 --
 

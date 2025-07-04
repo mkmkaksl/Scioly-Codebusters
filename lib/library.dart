@@ -3,7 +3,6 @@ export 'Features/Home/Widgets/home_logo.dart';
 export 'Features/Home/Widgets/vertical_falling_line_widget.dart';
 export 'Features/Home/Widgets/matrix_background_widget.dart';
 export 'Features/Home/home_page.dart';
-export 'Features/Home/settings.dart';
 
 export 'Features/Game Setup/Providers/game_mode_provider.dart';
 export 'Features/Game Setup/Util/game_setup_library.dart';
@@ -14,6 +13,12 @@ export 'Features/Statistics/Providers/stats_provider.dart';
 export 'Features/Statistics/Widgets/stat_box_widget.dart';
 export 'Features/Statistics/Widgets/stat_row_widget.dart';
 export 'Features/Statistics/stats_page.dart';
+
+export 'Features/How to Play/how_to_aristocrats.dart';
+export 'Features/How to Play/how_to_patristocrat.dart';
+export 'Features/How to Play/how_to_xenocrypt.dart';
+export 'Features/How to Play/instructions.dart';
+export 'Features/How to Play/how_to_widgets.dart';
 
 export 'Features/Game/Models/cell.dart';
 export 'Features/Game/Models/game.dart';
@@ -51,7 +56,8 @@ export 'Features/Dictionary/Widgets/dictionary_entry_widget.dart';
 export 'Features/Dictionary/Widgets/dictionary_word_widget.dart';
 export 'Features/Dictionary/dictionary_page.dart';
 
-export 'Features/Audio/audio_controller.dart';
+export 'Features/Settings/audio_controller.dart';
+export 'Features/Settings/settings.dart';
 
 export 'Shared/widgets/home_button_widget.dart';
 export 'Shared/widgets/heading_widget.dart';

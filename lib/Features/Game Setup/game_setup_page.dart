@@ -108,7 +108,15 @@ class GamePageSetup extends ConsumerWidget {
                             child: HomeButtonWidget(
                               btnText: "How to Play",
                               neonColor: Colors.yellowAccent,
-                              onPressed: () => null,
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        Instructions(gameId: gameId),
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ),

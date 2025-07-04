@@ -22,12 +22,10 @@ class DictionaryPage extends ConsumerWidget {
         child: Scaffold(
           backgroundColor: AppTheme.appBarBackground,
           appBar: AppBar(
-            title: const Text('Pattern Map'),
+            title: const Text('Word Pattern Dictionary'),
             backgroundColor: AppTheme.appBarBackground,
             bottom: const TabBar(
               unselectedLabelColor: Colors.white,
-              //labelColor: AppTheme.logoGreen,
-              //indicatorColor: AppTheme.logoGreen,
               tabs: [
                 Tab(text: 'English'),
                 Tab(text: 'Spanish'),
