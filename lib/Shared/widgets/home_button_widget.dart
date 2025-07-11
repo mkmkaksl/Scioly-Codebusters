@@ -32,7 +32,7 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
   late final Animation<double> _glowAnimation;
   late final Animation<double> _stopsAnimation;
 
-  final _buttonWidth = screenW * (2 / 3);
+  final _buttonWidth = screenW * (5 / 6);
   late final List<Color> gradientColor;
 
   @override

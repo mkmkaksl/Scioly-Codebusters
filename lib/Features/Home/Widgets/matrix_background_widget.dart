@@ -30,7 +30,7 @@ class _MatrixBackgroundWidgetState extends ConsumerState<MatrixBackgroundWidget>
   }
 
   void _startGeneratingLines() {
-    _lineSpawnTimer = Timer.periodic(const Duration(milliseconds: 100), (
+    _lineSpawnTimer = Timer.periodic(const Duration(milliseconds: 200), (
       timer,
     ) {
       if (!mounted) {

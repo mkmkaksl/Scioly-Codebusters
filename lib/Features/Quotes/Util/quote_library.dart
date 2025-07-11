@@ -73,13 +73,13 @@ class QuoteLibrary {
     if (language == Language.spanish) {
       randQuote = await getQuote("assets/quotes/spanishQuotes.json");
       tempOgQuote =
-          "*Hola como estas? Espero que estes bien. Este es un ejemplo de cita en español para probar el sistema. Necesito mas palabras para llenar espacio, asi que eso es lo que estoy haciendo. Parece que necesito aun mas palabras. ¿Es esto suficiente? Supongo que solo hay una manera de averiguarlo...";
+          "Hola como estas? Espero que estes bien. Este es un ejemplo de cita en español para probar el sistema. Necesito mas palabras para llenar espacio, asi que eso es lo que estoy haciendo. Parece que necesito aun mas palabras. ¿Es esto suficiente? Supongo que solo hay una manera de averiguarlo...";
     } else {
       randQuote = await getQuote("assets/quotes/englishQuotes.json");
       tempOgQuote =
-          "*hello, world! What a wonderful time to be alive. Don't you think so? I need some more words to fill space so that is what this is. Looks like I need even more words. Is this enough? I guess there's only one way to find out...";
+          "hello, world! What a wonderful time to be alive. Don't you think so? I need some more words to fill space so that is what this is. Looks like I need even more words. Is this enough? I guess there's only one way to find out...";
     }
-    tempOgQuote = randQuote["quote"] ?? tempOgQuote;
+    tempOgQuote = removeAccentsButKeepEnye(randQuote["quote"] ?? tempOgQuote);
     String tempAuthor = randQuote["author"] ?? "Please Try Again";
     String tempPlainText = tempOgQuote.toUpperCase();
     Map<String, String> tempKey = generateKey(tempPlainText, language);

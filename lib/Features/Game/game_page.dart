@@ -33,6 +33,7 @@ class GamePage extends ConsumerWidget {
     );
 
     return Container(
+      constraints: BoxConstraints.tightForFinite(height: screenH),
       decoration: AppTheme.backgroundGradient,
       child: Scaffold(
         backgroundColor: AppTheme.appBarBackground,
@@ -55,6 +56,7 @@ class GamePage extends ConsumerWidget {
           ],
         ),
         body: Stack(
+          fit: StackFit.expand,
           children: [
             Stack(
               children: [

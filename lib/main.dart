@@ -3,6 +3,7 @@ import 'dart:developer' as dev;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:scioly_codebusters/Features/Settings/Models/setting_prefs.dart';
 import 'library.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
@@ -25,12 +26,15 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  // Hive.registerAdapter(SolveRecordAdapter());
-  // Hive.registerAdapter(GameModeStatsAdapter());
   Hive.registerAdapter(SolvedQuoteAdapter());
+  Hive.registerAdapter(SettingPrefsAdapter());
 
-  // await Hive.openBox<GameModeStats>('statsBox');
   await Hive.openBox<SolvedQuote>('quotesBox');
+  settingsBox = await Hive.openBox<SettingPrefs>('settingsBox');
+  if (settingsBox?.get('prefs') == null) {
+    await settingsBox?.put("prefs", SettingPrefs());
+  }
+
   AudioController? audioController;
   if (!kIsWeb) {
     audioController = AudioController();

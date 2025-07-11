@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:scioly_codebusters/library.dart';
 //import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -30,6 +31,9 @@ const double panelHeight = 60.0;
 Color gameCellColor = AppTheme.logoGreen;
 
 String bgMusicFile = "assets/music/bg.mp3";
+Box? settingsBox;
+// user preference on whether the background should have teh matrix or not
+bool bgMatrixOn = true;
 
 /// ThemeProvider for the app. Exposes ThemeData globally via Riverpod.
 final appThemeProvider = AppTheme.theme;

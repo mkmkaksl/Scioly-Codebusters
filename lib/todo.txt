@@ -30,11 +30,11 @@ v.2.0.0
 13. Make Game Setup Buttons look better (not aligned), and button presses clear (check why web looks weird): eg. highlight dictionary button
     
 Bugs to solve:
-- Xenocrypt accented text showing up as text
+- Xenocrypt accented text showing up as text - Fixed --> Some quotes are too long and cause render overflow (saw it happen twice)
 - Aristocrat styling on Iphone 13
 - Background music not working - Fixed
-- Keyboard hovering with shorter quotes
-- View Solved Quotes is on two lines on Iphone 13 (increase button size)
+- Keyboard hovering with shorter quotes - Fixed
+- View Solved Quotes is on two lines on Iphone 13 (increase button size) - Fixed
 - Dictionary takes super long to search longer words (do we even need the dictionary?)
 
 -- video showcasing features --
