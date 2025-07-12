@@ -46,8 +46,9 @@ class KeyboardWidget extends ConsumerWidget {
                 .read(keyboardProvider(gameKey).notifier)
                 .pressKey(key, true),
             isPressed: isPressed,
-            // color: AppTheme.backgroundColors[2],
             color: AppTheme.logoGreen,
+            paddingHorizontal: 5,
+            paddingVertical: 0,
           ),
         ),
       );
@@ -81,7 +82,9 @@ class KeyboardWidget extends ConsumerWidget {
                     onPressed: () => ref
                         .read(gameProvider(gameKey).notifier)
                         .incrementCell(-1),
-                    padding: padding + 10,
+                    // padding: padding + 10,
+                    paddingVertical: 0,
+                    paddingHorizontal: padding + 10,
                     endScale: 1.05,
                     color: AppTheme.logoGreen,
                   ),
@@ -96,7 +99,9 @@ class KeyboardWidget extends ConsumerWidget {
                       onPressed: () => ref
                           .read(keyboardProvider(gameKey).notifier)
                           .resetPuzzle(),
-                      padding: padding + 10,
+                      // padding: padding + 10,
+                      paddingVertical: 0,
+                      paddingHorizontal: padding + 10,
                       endScale: 1.05,
                       color: AppTheme.logoGreen,
                     ),
@@ -110,7 +115,9 @@ class KeyboardWidget extends ConsumerWidget {
                     onPressed: () => ref
                         .read(keyboardProvider(gameKey).notifier)
                         .pressKey("", true),
-                    padding: padding + 10,
+                    // padding: padding + 10,
+                    paddingVertical: 0,
+                    paddingHorizontal: padding + 10,
                     endScale: 1.05,
                     color: AppTheme.logoGreen,
                   ),
@@ -122,7 +129,9 @@ class KeyboardWidget extends ConsumerWidget {
                     keyValue: "Undo",
                     onPressed: () =>
                         ref.read(keyboardProvider(gameKey).notifier).undo(),
-                    padding: padding + 10,
+                    // padding: padding + 10,
+                    paddingVertical: 0,
+                    paddingHorizontal: padding + 10,
                     endScale: 1.05,
                     color: AppTheme.logoGreen,
                   ),
@@ -135,7 +144,9 @@ class KeyboardWidget extends ConsumerWidget {
                     onPressed: () => ref
                         .read(gameProvider(gameKey).notifier)
                         .incrementCell(1),
-                    padding: padding + 10,
+                    // padding: padding + 10,
+                    paddingVertical: 0,
+                    paddingHorizontal: padding + 10,
                     endScale: 1.05,
                     color: AppTheme.logoGreen,
                   ),

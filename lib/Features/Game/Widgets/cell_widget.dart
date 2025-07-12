@@ -34,12 +34,11 @@ class CellWidget extends ConsumerWidget {
 
     // This set of conditions if more important than the .isCorrect conditions
     if (cells[index].isSelected) {
-      cellColor = Colors.orange;
+      cellColor = Color(0xFFB22222);
       textColor = Colors.white;
     } else if (cells[index].isLit) {
-      cellColor = Colors.teal.shade400;
+      cellColor = Color(0xFFFF8C00);
       textColor = Colors.white;
-      shadows = [BoxShadow(color: Colors.teal.shade900, blurRadius: 5)];
     }
 
     // Most important set of conditions, so at bottom
