@@ -15,6 +15,7 @@ class StyledButtonWidget extends ConsumerStatefulWidget {
   final Function onPressed;
   final double height;
   final bool addTextShadow;
+  final int animDuration;
 
   const StyledButtonWidget({
     super.key,
@@ -31,6 +32,7 @@ class StyledButtonWidget extends ConsumerStatefulWidget {
     this.bgColor = AppTheme.logoGreen,
     this.height = -1,
     this.addTextShadow = false,
+    this.animDuration = 200,
   });
 
   @override
@@ -50,7 +52,7 @@ class _StyledButtonWidgetState extends ConsumerState<StyledButtonWidget>
   void initState() {
     super.initState();
     _animationController = AnimationController(
-      duration: const Duration(milliseconds: 200),
+      duration: Duration(milliseconds: widget.animDuration),
       vsync: this,
     );
     _alphaAnimation = Tween(begin: 50.0, end: widget.endAlpha).animate(
@@ -64,13 +66,12 @@ class _StyledButtonWidgetState extends ConsumerState<StyledButtonWidget>
     super.dispose();
   }
 
-  void _onTapUp(TapUpDetails details) {
-    _animationController.reverse();
-    widget.onPressed();
-  }
-
-  void _onTapDown(TapDownDetails details) {
+  void _onTap() {
     _animationController.forward();
+    widget.onPressed();
+    Future.delayed(Duration(milliseconds: widget.animDuration), () {
+      _animationController.reverse();
+    });
   }
 
   @override
@@ -78,36 +79,39 @@ class _StyledButtonWidgetState extends ConsumerState<StyledButtonWidget>
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        return GestureDetector(
-          onTapDown: _onTapDown,
-          onTapUp: _onTapUp,
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              vertical: widget.paddingVertical,
-              horizontal: widget.paddingHorizontal,
-            ),
-            margin: EdgeInsets.symmetric(
-              vertical: widget.marginVertical,
-              horizontal: widget.marginHorizontal,
-            ),
-            height: widget.height != -1 ? widget.height : null,
-            decoration: BoxDecoration(
-              color: widget.bgColor.withAlpha((_alphaAnimation.value).toInt()),
-              border: Border.all(color: widget.bgColor, width: 1),
-            ),
-            child: Center(
-              child:
-                  widget.valueIcon ??
-                  Text(
-                    widget.value,
-                    style: TextStyle(
-                      color: widget.txtColor,
-                      fontSize: 15,
-                      shadows: widget.addTextShadow
-                          ? [Shadow(color: widget.bgColor, blurRadius: 10)]
-                          : [],
+        return Container(
+          margin: EdgeInsets.symmetric(
+            vertical: widget.marginVertical,
+            horizontal: widget.marginHorizontal,
+          ),
+          child: InkWell(
+            onTap: _onTap,
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                vertical: widget.paddingVertical,
+                horizontal: widget.paddingHorizontal,
+              ),
+              height: widget.height != -1 ? widget.height : null,
+              decoration: BoxDecoration(
+                color: widget.bgColor.withAlpha(
+                  (_alphaAnimation.value).toInt(),
+                ),
+                border: Border.all(color: widget.bgColor, width: 1),
+              ),
+              child: Center(
+                child:
+                    widget.valueIcon ??
+                    Text(
+                      widget.value,
+                      style: TextStyle(
+                        color: widget.txtColor,
+                        fontSize: 15,
+                        shadows: widget.addTextShadow
+                            ? [Shadow(color: widget.bgColor, blurRadius: 10)]
+                            : [],
+                      ),
                     ),
-                  ),
+              ),
             ),
           ),
         );

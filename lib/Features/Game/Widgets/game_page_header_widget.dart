@@ -120,7 +120,7 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
                 if (!widget.gameKey.contains("Patristocrat"))
                   SizedBox(width: padding),
                 if (!widget.gameKey.contains("Patristocrat"))
-                  GestureDetector(
+                  InkWell(
                     onTap: () {
                       provider.setSuggestions(!showSuggestions);
                     },
@@ -140,36 +140,34 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
                     ),
                   ),
                 SizedBox(width: padding),
-                GestureDetector(
-                  onTapUp: (TapUpDetails details) {
+                InkWell(
+                  onTap: () {
                     provider.hint();
-                    if (mounted) _animationController.reverse();
+                    if (mounted) {
+                      _animationController.forward();
+                      Future.delayed(Duration(milliseconds: 200), () {
+                        _animationController.reverse();
+                      });
+                    }
                   },
-                  onTapDown: (details) {
-                    if (mounted) _animationController.forward();
-                  },
-                  child: MouseRegion(
-                    onEnter: _onEnter,
-                    onExit: _onExit,
-                    child: Container(
-                      height: panelHeight,
-                      width: 100,
-                      padding: EdgeInsets.all(padding),
-                      decoration: BoxDecoration(
-                        color: hintColor.withAlpha(
-                          _alphaColorAnimation.value.toInt(),
-                        ),
-                        border: Border.all(color: hintColor, width: 1),
+                  child: Container(
+                    height: panelHeight,
+                    width: 100,
+                    padding: EdgeInsets.all(padding),
+                    decoration: BoxDecoration(
+                      color: hintColor.withAlpha(
+                        _alphaColorAnimation.value.toInt(),
                       ),
-                      child: Center(
-                        child: Text(
-                          "Hint",
-                          style: TextStyle(
-                            color: hintColor,
-                            fontSize: 20,
-                            fontFamily: 'JetBrainsMonoBold',
-                            shadows: [Shadow(color: hintColor, blurRadius: 5)],
-                          ),
+                      border: Border.all(color: hintColor, width: 1),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Hint",
+                        style: TextStyle(
+                          color: hintColor,
+                          fontSize: 20,
+                          fontFamily: 'JetBrainsMonoBold',
+                          shadows: [Shadow(color: hintColor, blurRadius: 5)],
                         ),
                       ),
                     ),

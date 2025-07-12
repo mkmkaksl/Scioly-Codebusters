@@ -63,7 +63,7 @@ class CellWidget extends ConsumerWidget {
             ),
           ),
           SizedBox(width: containerWidth, height: padding),
-          GestureDetector(
+          InkWell(
             onTap: () =>
                 ref.read(gameProvider(gameKey).notifier).selectCell(index),
             child: AnimatedContainer(

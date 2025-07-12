@@ -12,6 +12,7 @@ const containerWidth = 20.0;
 const containerHeight = containerWidth * 1.25;
 const decorationHeight = containerWidth * 0.7;
 const containerFS = 15.0;
+const decorationTextFS = 10.0;
 const padding = 4.0;
 // might need to change if screen size changes (rotation)
 final screenW = GameSetup.width;
@@ -190,7 +191,7 @@ class AppTheme {
   );
 
   static TextStyle decorationTextStyle = TextStyle(
-    fontSize: 12,
+    fontSize: decorationTextFS,
     fontWeight: FontWeight.w600,
     color: gameCellColor,
   );

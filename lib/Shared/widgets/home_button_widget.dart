@@ -10,6 +10,7 @@ class HomeButtonWidget extends ConsumerStatefulWidget {
 
   final int initialAlpha;
   final int finalAlpha;
+  final int animationDuration;
   const HomeButtonWidget({
     super.key,
     required this.btnText,
@@ -18,6 +19,7 @@ class HomeButtonWidget extends ConsumerStatefulWidget {
     this.num = "",
     this.initialAlpha = 10,
     this.finalAlpha = 255,
+    this.animationDuration = 100,
   });
 
   @override
@@ -39,7 +41,7 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
   void initState() {
     super.initState();
     _animationController = AnimationController(
-      duration: const Duration(milliseconds: 200),
+      duration: Duration(milliseconds: widget.animationDuration),
       vsync: this,
     );
 
@@ -73,13 +75,12 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
     super.dispose();
   }
 
-  void _onTapUp(TapUpDetails details) {
-    _animationController.reverse();
-    widget.onPressed();
-  }
-
-  void _onTapDown(TapDownDetails details) {
+  void _onTap() {
     _animationController.forward();
+    Future.delayed(Duration(milliseconds: widget.animationDuration), () {
+      _animationController.reverse();
+    });
+    widget.onPressed();
   }
 
   @override
@@ -87,9 +88,8 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        return GestureDetector(
-          onTapUp: _onTapUp,
-          onTapDown: _onTapDown,
+        return InkWell(
+          onTap: _onTap,
           child: Container(
             width: _buttonWidth,
             decoration: BoxDecoration(
