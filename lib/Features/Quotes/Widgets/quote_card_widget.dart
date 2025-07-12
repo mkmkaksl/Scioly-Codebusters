@@ -44,15 +44,15 @@ class QuoteCard extends StatelessWidget {
               fontSize: 15,
             ),
           ),
+          Text(
+            quote.gameMode,
+            style: TextStyle(color: Colors.grey, fontSize: 12),
+          ),
           SizedBox(height: padding),
           Text(quote.text, style: TextStyle(color: color)),
           SizedBox(height: padding),
           Row(
             children: [
-              Text(
-                quote.gameMode,
-                style: TextStyle(color: Colors.grey, fontSize: 12),
-              ),
               Spacer(),
               Text(
                 "- ${quote.author}",

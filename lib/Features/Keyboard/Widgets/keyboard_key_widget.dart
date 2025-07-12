@@ -5,7 +5,8 @@ import 'package:flutter/services.dart';
 class KeyboardKeyWidget extends ConsumerStatefulWidget {
   final String keyValue;
   final Color color;
-  final double padding;
+  final double paddingHorizontal;
+  final double paddingVertical;
   final double endScale;
   final Function onPressed;
   final bool isPressed;
@@ -17,7 +18,8 @@ class KeyboardKeyWidget extends ConsumerStatefulWidget {
     required this.onPressed,
 
     this.endScale = 1.1,
-    this.padding = 5.0,
+    this.paddingVertical = 5.0,
+    this.paddingHorizontal = 5.0,
     this.isPressed = false,
     this.color = Colors.green,
     this.animDuration = 200,
@@ -68,7 +70,10 @@ class _KeyboardKeyWidgetState extends ConsumerState<KeyboardKeyWidget>
           // onTapUp: _onTapUp,
           onTap: _onTap,
           child: Container(
-            padding: EdgeInsets.all(widget.padding),
+            padding: EdgeInsets.symmetric(
+              vertical: widget.paddingVertical,
+              horizontal: widget.paddingHorizontal,
+            ),
             decoration: BoxDecoration(
               color: widget.isPressed
                   ? widget.color.withAlpha((50 * _scaleAnimation.value).toInt())
