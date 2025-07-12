@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DictionaryPage extends ConsumerWidget {
@@ -22,7 +22,7 @@ class DictionaryPage extends ConsumerWidget {
         child: Scaffold(
           backgroundColor: AppTheme.appBarBackground,
           appBar: AppBar(
-            title: const Text('Word Pattern Dictionary'),
+            title: const Text('Pattern Dictionary'),
             backgroundColor: AppTheme.appBarBackground,
             bottom: const TabBar(
               unselectedLabelColor: Colors.white,

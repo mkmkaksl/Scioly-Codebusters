@@ -1,9 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 
 final statsProvider = Provider.family<QuoteStats, String>((ref, gameModeKey) {
   final allQuotes = ref.watch(quoteListProvider);
-  final quotes = allQuotes.where((q) => q.gameMode == gameModeKey).toList();
+  final quotes = allQuotes
+      .where((q) => q.rating >= 2 && q.gameMode == gameModeKey)
+      .toList();
 
   final now = DateTime.now();
   final startOfThisWeek = now.subtract(Duration(days: now.weekday - 1));

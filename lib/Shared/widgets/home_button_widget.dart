@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 
 class HomeButtonWidget extends ConsumerStatefulWidget {
   final String btnText;
@@ -32,7 +32,7 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
   late final Animation<double> _glowAnimation;
   late final Animation<double> _stopsAnimation;
 
-  final _buttonWidth = screenW * (2 / 3);
+  final _buttonWidth = screenW * (5 / 6);
   late final List<Color> gradientColor;
 
   @override

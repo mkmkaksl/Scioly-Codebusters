@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 import 'dart:math';
 
 class MatrixBackgroundWidget extends ConsumerStatefulWidget {
@@ -30,7 +30,7 @@ class _MatrixBackgroundWidgetState extends ConsumerState<MatrixBackgroundWidget>
   }
 
   void _startGeneratingLines() {
-    _lineSpawnTimer = Timer.periodic(const Duration(milliseconds: 100), (
+    _lineSpawnTimer = Timer.periodic(const Duration(milliseconds: 200), (
       timer,
     ) {
       if (!mounted) {

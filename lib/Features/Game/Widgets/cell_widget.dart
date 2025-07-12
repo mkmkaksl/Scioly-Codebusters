@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 
 class CellWidget extends ConsumerWidget {
   final int index;
@@ -79,7 +79,7 @@ class CellWidget extends ConsumerWidget {
                 child: Text(
                   cells[index].text,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: containerFS,
                     fontWeight: FontWeight.w600,
                     color: textColor,
                   ),

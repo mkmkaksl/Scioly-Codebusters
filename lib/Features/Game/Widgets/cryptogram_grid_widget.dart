@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 
 //change width, replace boxes with padding, change file-> cryptogram_grid_widget
 class CryptogramGridWidget extends ConsumerWidget {
@@ -25,10 +25,14 @@ class CryptogramGridWidget extends ConsumerWidget {
       grid.add(rowWidgets);
       grid.add([SizedBox(width: maxLength, height: padding)]);
     }
-    return Column(
-      children: grid.map((rowWidgets) {
-        return Row(children: rowWidgets);
-      }).toList(),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: grid.map((rowWidgets) {
+          return Row(children: rowWidgets);
+        }).toList(),
+      ),
     );
   }
 }

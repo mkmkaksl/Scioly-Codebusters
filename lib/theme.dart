@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projects/library.dart';
+import 'package:hive/hive.dart';
+import 'package:scioly_codebusters/library.dart';
 //import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Button dimensions for game controls (new quote, etc)
@@ -7,9 +8,10 @@ const buttonWidth = 200.0;
 // inset padding
 const insetPadding = 16.0;
 //styling for cells
-const containerWidth = 22.0;
+const containerWidth = 20.0;
 const containerHeight = containerWidth * 1.25;
 const decorationHeight = containerWidth * 0.7;
+const containerFS = 15.0;
 const padding = 4.0;
 // might need to change if screen size changes (rotation)
 final screenW = GameSetup.width;
@@ -23,11 +25,17 @@ double get safeWidth => screenW - horizontalBuffer;
 final maxKeysInRow = 10;
 double get keyWidth =>
     (safeWidth - (maxKeysInRow - 1) * spacing) / maxKeysInRow;
-final keyboardH = screenH * 0.25; // Height of the keyboard widget
+// final keyboardH = screenH * 0.25; // Height of the keyboard widget
+final keyboardH = 225.0;
 //panel height for timer etc.
 const double panelHeight = 60.0;
 
 Color gameCellColor = AppTheme.logoGreen;
+
+String bgMusicFile = "assets/music/bg.mp3";
+Box? settingsBox;
+// user preference on whether the background should have teh matrix or not
+bool bgMatrixOn = true;
 
 /// ThemeProvider for the app. Exposes ThemeData globally via Riverpod.
 final appThemeProvider = AppTheme.theme;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 
 class GamePageSetup extends ConsumerWidget {
   final Language language;
@@ -131,7 +131,12 @@ class GamePageSetup extends ConsumerWidget {
                             child: HomeButtonWidget(
                               btnText: "New Puzzle",
                               neonColor: Colors.redAccent,
-                              onPressed: () {
+                              onPressed: () async {
+                                await gProvider.buildCryptogram(
+                                  gameMode,
+                                  language,
+                                  gameId,
+                                );
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -142,16 +147,11 @@ class GamePageSetup extends ConsumerWidget {
                                     ),
                                   ),
                                 );
-                                gProvider.buildCryptogram(
-                                  gameMode,
-                                  language,
-                                  gameId,
-                                );
                               },
                             ),
                           ),
                         ),
-                        if (cellCount > 0) SizedBox(width: buttonMargin - 10),
+                        if (cellCount > 0) SizedBox(width: buttonMargin),
                         if (cellCount > 0)
                           Expanded(
                             child: SizedBox(

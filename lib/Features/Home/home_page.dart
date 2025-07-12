@@ -1,21 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 //import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  final AudioController? audioCont;
+  const HomePage({super.key, this.audioCont});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    widget.audioCont?.playBgSound();
+    bgMatrixOn = settingsBox?.get('prefs').bgMatrixOn;
+  }
 
   @override
   Widget build(BuildContext context) {
     GameSetup.init(context);
-    // audioCont.playSound("assets/music/bg.mp3");
 
     return Container(
       decoration: AppTheme.backgroundGradient,
       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       child: Stack(
         children: [
-          MatrixBackgroundWidget(),
+          // just listens to the value of the bgMatrixOn boolean
+          ValueListenableBuilder(
+            valueListenable: settingsBox!.listenable(keys: ['prefs']),
+            builder: (context, box, _) {
+              if (box.get('prefs').bgMatrixOn) return MatrixBackgroundWidget();
+              return SizedBox();
+            },
+          ),
           Scaffold(
             backgroundColor: AppTheme.appBarBackground,
             appBar: AppBar(
@@ -39,7 +59,8 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const Settings(),
+                          builder: (context) =>
+                              Settings(audioCont: widget.audioCont),
                         ),
                       );
                     },
