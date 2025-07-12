@@ -32,10 +32,11 @@ v.2.0.0
     
 Bugs to solve:
 - Xenocrypt accented text showing up as text - Fixed --> Some quotes are too long and cause render overflow (saw it happen twice) - Fixed
-- Aristocrat styling on Iphone 13
-- Only add 2 star times to stats
-- Replace gesturedetector with something else to remove onTapDown effect looking weird on phone
+- Aristocrat styling on Iphone 13 - fixed
+- Only add 2 star times to stats - Done
+- Replace gesturedetector with something else to remove onTapDown effect looking weird on phone - Fixed
 - Lower load time for searching bigger words (math), clean up words (missing common words, random words)
+- Change save quote to favorite quote instead - Fixed
 
 -- video showcasing features --
 

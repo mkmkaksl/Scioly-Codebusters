@@ -28,14 +28,7 @@ class _HomePageState extends State<HomePage> {
       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       child: Stack(
         children: [
-          // just listens to the value of the bgMatrixOn boolean
-          ValueListenableBuilder(
-            valueListenable: settingsBox!.listenable(keys: ['prefs']),
-            builder: (context, box, _) {
-              if (box.get('prefs').bgMatrixOn) return MatrixBackgroundWidget();
-              return SizedBox();
-            },
-          ),
+          const ConditionalBg(),
           Scaffold(
             backgroundColor: AppTheme.appBarBackground,
             appBar: AppBar(
@@ -52,8 +45,9 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.circular(100),
                     border: Border.all(color: AppTheme.logoGreen, width: 2),
                   ),
+                  margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: IconButton(
-                    iconSize: 20,
+                    iconSize: 18,
                     icon: const Icon(Icons.settings),
                     onPressed: () {
                       Navigator.push(

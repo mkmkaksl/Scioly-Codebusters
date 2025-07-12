@@ -2,6 +2,7 @@ export 'Features/Home/painters/vertical_text.dart';
 export 'Features/Home/Widgets/home_logo.dart';
 export 'Features/Home/Widgets/vertical_falling_line_widget.dart';
 export 'Features/Home/Widgets/matrix_background_widget.dart';
+export 'Features/Home/Widgets/conditional_bg.dart';
 export 'Features/Home/home_page.dart';
 
 export 'Features/Game Setup/Providers/game_mode_provider.dart';
