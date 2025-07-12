@@ -81,10 +81,12 @@ class FinishedQuoteWidget extends ConsumerWidget {
               ),
               const SizedBox(height: 20),
               StyledButtonWidget(
-                value: "Save Quote",
+                value: "Favorite Quote",
                 bgColor: Colors.blueAccent,
-                onPressed: () {
-                  Null;
+                onPressed: () async {
+                  await ref
+                      .read(quoteListProvider.notifier)
+                      .favoriteMostRecentQuote();
                 },
               ),
               const SizedBox(height: 20),

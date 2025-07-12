@@ -70,7 +70,9 @@ class _StyledButtonWidgetState extends ConsumerState<StyledButtonWidget>
     _animationController.forward();
     widget.onPressed();
     Future.delayed(Duration(milliseconds: widget.animDuration), () {
-      _animationController.reverse();
+      if (mounted) {
+        _animationController.reverse();
+      }
     });
   }
 
