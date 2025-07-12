@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scioly_codebusters/library.dart';
 
@@ -34,14 +33,6 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
   void dispose() {
     _animationController.dispose();
     super.dispose();
-  }
-
-  void _onEnter(PointerEnterEvent details) {
-    if (mounted) _animationController.forward();
-  }
-
-  void _onExit(PointerExitEvent? details) {
-    if (mounted) _animationController.reverse();
   }
 
   @override

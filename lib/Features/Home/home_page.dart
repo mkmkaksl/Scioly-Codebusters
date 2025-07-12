@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-//import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scioly_codebusters/library.dart';
 
 class HomePage extends StatefulWidget {
@@ -66,7 +64,6 @@ class _HomePageState extends State<HomePage> {
               child: Center(
                 child: SizedBox(
                   width: screenW,
-                  //height: screenH,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
