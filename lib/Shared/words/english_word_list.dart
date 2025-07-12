@@ -24,6 +24,7 @@ they
 at
 but
 we
+were
 his
 from
 that
