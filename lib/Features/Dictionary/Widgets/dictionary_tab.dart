@@ -1,80 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:scioly_codebusters/library.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+//longest english: simultaneously
+//longest spanish: responsabilidades
 
-double getEntryHeight(
-  int wordCount,
-  double screenWidth,
-  double wordWidgetWidth,
-  double wordWidgetSpacing,
-  double wordWidgetHeight,
-  double verticalPadding,
-) {
+double getEntryHeight(int wordCount, int wordLen) {
   // Calculate how many words fit per row
   int wordsPerRow =
-      ((screenWidth - 2 * verticalPadding) /
-              (wordWidgetWidth + wordWidgetSpacing))
+      ((screenW - 4 * insetPadding) /
+              (getWordWidgetWidth(wordLen) + wordWidgetSpacing))
           .floor();
   int numRows = (wordCount / wordsPerRow).ceil();
-  return numRows * wordWidgetHeight +
-      verticalPadding * 2 +
-      25 +
-      10; // + heading + SizedBox
+  debugPrint("rows: $numRows");
+  return (entryWidgetHeight + (numRows - 1) * wordH)
+      .toDouble(); // + heading + SizedBox
 }
 
-double getWordOffsetInEntry(
-  int wordIndex,
-  int wordsPerRow,
-  double wordWidgetHeight,
-  double verticalPadding,
-  double headingHeight,
-  double sizedBoxHeight,
-) {
-  int row = (wordIndex / wordsPerRow).floor();
-  return verticalPadding +
-      headingHeight +
-      sizedBoxHeight +
-      row * wordWidgetHeight;
+double getWordWidgetWidth(int len) {
+  return (10.0 * len) + 40;
 }
 
-double calculateWordScrollOffset(
+double getJump(
   List<MapEntry<String, List<String>>> entries,
   int targetEntryIndex,
-  int targetWordIndex,
-  double screenWidth,
-  double wordWidgetWidth,
-  double wordWidgetSpacing,
-  double wordWidgetHeight,
-  double verticalPadding,
-  double headingHeight,
-  double sizedBoxHeight,
 ) {
-  // 1. Sum heights of all previous entries
-  double offset = 0;
-  int wordsPerRow =
-      ((screenWidth - 2 * verticalPadding) /
-              (wordWidgetWidth + wordWidgetSpacing))
-          .floor();
+  double ans = 0;
   for (int i = 0; i < targetEntryIndex; i++) {
-    offset += getEntryHeight(
-      entries[i].value.length,
-      screenWidth,
-      wordWidgetWidth,
-      wordWidgetSpacing,
-      wordWidgetHeight,
-      verticalPadding,
-    );
+    final entry = entries[i];
+    int wordCount = entry.value.length;
+    int wordLen = entry.key.length;
+    ans += getEntryHeight(wordCount, wordLen);
+    debugPrint(ans.toString());
   }
-  // 2. Add offset for the word within its entry
-  offset += getWordOffsetInEntry(
-    targetWordIndex,
-    wordsPerRow,
-    wordWidgetHeight,
-    verticalPadding,
-    headingHeight,
-    sizedBoxHeight,
-  );
-  return offset;
+  return ans;
 }
 
 class DictionaryTab extends ConsumerStatefulWidget {
@@ -110,41 +68,11 @@ class _DictionaryTabState extends ConsumerState<DictionaryTab> {
     super.dispose();
   }
 
-  Map<int, double> get _benchmarks {
-    if (widget.dictionaryId == "english") {
-      return {
-        1: 0,
-        2: 40,
-        3: 100,
-        4: 2000,
-        5: 8000,
-        6: 16000, //mm-hmm
-        7: 30000, //o'clock or session
-        8: 50000, //initiate
-        9: 80000, //initially
-        10: 110000, //initiative
-        11: 140000, //nonetheless, up to African-American and simultaneously
-      };
-    } else if (widget.dictionaryId == "spanish") {
-      return {
-        1: 0,
-        2: 40,
-        3: 100,
-        4: 2000,
-        5: 7000,
-        6: 20000, //llamar
-        7: 38000, //llamame
-        8: 67000, //llamamos
-        9: 100000, //lleguemos
-        10: 140000, //emergencia
-        11: 170000, //apartamento
-      };
-    }
-    return {};
-  }
-
   void _onSearch(List<MapEntry<String, List<String>>> entries) {
-    final search = _searchController.text.trim().toLowerCase();
+    final search = _searchController.text.trim().toLowerCase().replaceAll(
+      '’',
+      "'",
+    );
     if (search.isEmpty) {
       setState(() {
         _highlightedEntryIndex = null;
@@ -192,7 +120,6 @@ class _DictionaryTabState extends ConsumerState<DictionaryTab> {
       if (_isJumping) setState(() => _isJumping = false);
       return;
     }
-    final benchmarks = _benchmarks;
     final key = _wordKeys[wordKey];
     if (attempt == 0) setState(() => _isJumping = true);
 
@@ -208,18 +135,7 @@ class _DictionaryTabState extends ConsumerState<DictionaryTab> {
     }
 
     if (attempt == 0 && widget.scrollController.hasClients) {
-      final parts = wordKey.split('-');
-      final word = parts.length > 1 ? parts.sublist(1).join('-') : '';
-      int len = word.length;
-      /*var words = entries[targetEntryIndex].value;
-      int i = 0;
-      for (String w in words) {
-        if (w == word) break;
-        i++;
-      }*/
-      double jumpOffset = benchmarks.containsKey(len)
-          ? benchmarks[len]!
-          : benchmarks[11]!; // fallback to largest
+      double jumpOffset = getJump(entries, targetEntryIndex);
       jumpOffset = jumpOffset.clamp(
         0.0,
         widget.scrollController.position.maxScrollExtent,
@@ -273,7 +189,7 @@ class _DictionaryTabState extends ConsumerState<DictionaryTab> {
         Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(searchPadding),
               child: Row(
                 children: [
                   Expanded(
@@ -318,7 +234,7 @@ class _DictionaryTabState extends ConsumerState<DictionaryTab> {
                   controller: widget.scrollController,
                   child: ListView.separated(
                     controller: widget.scrollController,
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(insetPadding),
                     itemCount: entries.length,
                     separatorBuilder: (_, _) => const SizedBox(height: 24),
                     itemBuilder: (context, index) {

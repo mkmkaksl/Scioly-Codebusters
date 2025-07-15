@@ -17,12 +17,11 @@ class GameSetup {
     String gameId,
   ) async {
     List<Cell> newCells = [];
-    Quote quote = await QuoteLibrary.getNewQuote(language);
+    Quote quote = await getNewQuote(language);
     for (String i in quote.plainText.split('')) {
-      if (QuoteLibrary.isException(i, language) && gameId != "Patristocrat") {
+      if (isException(i, language) && gameId != "Patristocrat") {
         newCells.add(Cell(text: i, cipher: i, plainText: i, isException: true));
-      } else if (gameId != "Patristocrat" ||
-          !QuoteLibrary.isException(i, language)) {
+      } else if (gameId != "Patristocrat" || !isException(i, language)) {
         newCells.add(
           Cell(
             text: "",

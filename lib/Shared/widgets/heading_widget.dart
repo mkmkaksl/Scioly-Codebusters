@@ -30,15 +30,15 @@ class HeadingWidget extends ConsumerWidget {
             color: neonColor,
             padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
             margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-            child: numIcon == null
-                ? Text(
-                    num,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: fontSize - 5,
-                    ),
-                  )
-                : numIcon,
+            child:
+                numIcon ??
+                Text(
+                  num,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: fontSize - 5,
+                  ),
+                ),
           ),
 
           Text(

@@ -27,7 +27,9 @@ final maxKeysInRow = 10;
 double get keyWidth =>
     (safeWidth - (maxKeysInRow - 1) * spacing) / maxKeysInRow;
 final keyboardH = screenH * 0.25; // Height of the keyboard widget
-// final keyboardH = 225.0;
+// dictionary styling
+const borderWidth = 2.0;
+const searchPadding = 12.0;
 //panel height for timer etc.
 const double panelHeight = 60.0;
 

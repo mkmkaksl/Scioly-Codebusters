@@ -28,7 +28,6 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(SolvedQuoteAdapter());
   Hive.registerAdapter(SettingPrefsAdapter());
-
   await Hive.openBox<SolvedQuote>('quotesBox');
   settingsBox = await Hive.openBox<SettingPrefs>('settingsBox');
   if (settingsBox?.get('prefs') == null) {
@@ -40,6 +39,20 @@ void main() async {
     audioController = AudioController();
     await audioController.initialize();
   }
+  // final textSpan = TextSpan(
+  //   text: 'G', // The character to measure
+  //   style: TextStyle(fontSize: 14, color: Colors.black),
+  // );
+
+  // final textPainter = TextPainter(
+  //   text: textSpan,
+  //   textDirection: TextDirection.ltr, // Needed for layout calculations
+  // );
+
+  // textPainter.layout(); // Perform the layout calculation
+
+  // final characterWidth = textPainter.width;
+  // debugPrint('Character width: $characterWidth');
 
   runApp(
     ProviderScope(

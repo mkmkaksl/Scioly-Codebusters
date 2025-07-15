@@ -364,7 +364,7 @@ step
 morning
 passed
 vowel
-TRUE
+true
 hundred
 against
 pattern
@@ -390,7 +390,7 @@ ground
 fall
 king
 town
-I’ll
+I'll
 unit
 figure
 certain
@@ -1495,7 +1495,7 @@ town
 road
 drive
 arm
-TRUE
+true
 federal
 break
 better
@@ -3548,7 +3548,7 @@ wooden
 elementary
 concert
 aggressive
-FALSE
+false
 intention
 channel
 extreme
@@ -4348,7 +4348,6 @@ mouse
 rope
 concrete
 prescription
-African-American
 chase
 document
 brick
@@ -4663,7 +4662,6 @@ suck
 and
 or
 broadcast
-re
 leap
 random
 past
@@ -5251,7 +5249,6 @@ sheer
 prior
 immune
 reliability
-ass
 alongside
 bush
 exotic
@@ -5532,7 +5529,6 @@ tray
 pioneer
 organizational
 textbook
-uh
 nasty
 shrink
 model
@@ -6007,5 +6003,12 @@ plaintiff
 kid
 middle-class
 apology
-till"""
+till
+hasn't
+hadn't
+haven't
+aren't
+excellence
+I've
+players"""
         .split('\n');

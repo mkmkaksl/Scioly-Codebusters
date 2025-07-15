@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+int wordH = 32; // Borders (4) + padding (10) + font size (14) + runSpacing (4)
+
 class DictionaryWordWidget extends StatelessWidget {
   final String word;
   final int index;
@@ -37,6 +39,7 @@ class DictionaryWordWidget extends StatelessWidget {
       child: Text(
         word,
         style: TextStyle(
+          fontSize: 14,
           color: isWordHighlighted ? Colors.white : curColor,
           fontWeight: isWordHighlighted ? FontWeight.bold : FontWeight.normal,
         ),

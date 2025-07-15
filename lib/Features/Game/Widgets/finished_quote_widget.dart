@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scioly_codebusters/library.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:scioly_codebusters/library.dart';
 
 class FinishedQuoteWidget extends ConsumerStatefulWidget {
   final String quote;
@@ -24,7 +21,6 @@ class FinishedQuoteWidget extends ConsumerStatefulWidget {
 class _FinishedQuoteWidgetState extends ConsumerState<FinishedQuoteWidget>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
-  late final Animation<double> _alphaColorAnimation;
   bool isFavorited = false;
 
   @override
@@ -33,10 +29,6 @@ class _FinishedQuoteWidgetState extends ConsumerState<FinishedQuoteWidget>
     _animationController = AnimationController(
       duration: const Duration(milliseconds: 200),
       vsync: this,
-    );
-
-    _alphaColorAnimation = Tween(begin: 50.0, end: 100.0).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
     );
   }
 

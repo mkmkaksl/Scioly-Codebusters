@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:scioly_codebusters/library.dart';
 
+double wordWidgetSpacing = 8.0;
+double entryWidgetHeight =
+    25 +
+    10 +
+    2 +
+    14 +
+    wordH -
+    4 +
+    insetPadding * 2 +
+    4 +
+    24 +
+    20; //number, padding, border, padding, ..., outside borders + spacing + shadows,
+
 class DictionaryEntryWidget extends StatelessWidget {
   final MapEntry<String, List<String>> entry;
   final int index;
@@ -27,10 +40,7 @@ class DictionaryEntryWidget extends StatelessWidget {
       key: entryKey,
       decoration: BoxDecoration(
         color: Colors.black,
-        border: Border.all(
-          color: isEntryHighlighted ? Colors.yellow : curColor,
-          width: 2,
-        ),
+        border: Border.all(color: curColor, width: borderWidth),
         boxShadow: [BoxShadow(color: curColor, blurRadius: 10)],
       ),
       padding: EdgeInsets.all(insetPadding),
@@ -45,7 +55,7 @@ class DictionaryEntryWidget extends StatelessWidget {
           ),
           const SizedBox(height: padding + 10),
           Wrap(
-            spacing: 8,
+            spacing: wordWidgetSpacing,
             runSpacing: 4,
             children: entry.value
                 .map(

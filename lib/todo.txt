@@ -35,24 +35,27 @@ Bugs to solve:
 - Aristocrat styling on Iphone 13 - fixed
 - Only add 2 star times to stats - Done
 - Replace gesturedetector with something else to remove onTapDown effect looking weird on phone - Fixed
-- Lower load time for searching bigger words (math), clean up words (missing common words, random words)
+- Lower load time for searching bigger words (math), clean up words (missing common words, random words) - Fixed
 - Change save quote to favorite quote instead - Fixed
+- Add plurals to dictionary
 
 -- video showcasing features --
 
 v.2.1.0
-1. Memory game for Baconian, Morse code, and Dictionary
+1. Memory game for Baconian, Morse code, and Dictionary **save for 2.2
     - Settings for games
-2. Dictionary Suggestion: 
+2. Dictionary Suggestion: **ditch
     - Patristocrat, after placing spaces, finds suggestions between spaces AND it goes all the way, any number of words between spaces
 3. [consideration]: Saving unsolved quotes for later to move on for now
 4. Test out Hive capabilties
 5. Add/Delete spaces button for patristocrat
-6. Spanish translations
-7. Web app
-8. Dictionary Cleanup
+6. Spanish translations **dictionary and quotes
+7. Web app **low priority, maybe push to 2.2
+8. Dictionary Cleanup - done
 9. Piechart displaying stars (how many of solved puzzles is how many stars) in stats
-10. Display spanish translations
+11. Improve styling
+    - Perfect solve animation
+    - intro logo animation
 
 -- Youtube videos after 2.1 --
 
@@ -61,7 +64,7 @@ v.2.2.0
     - 5 minutes to solve as many cryptograms as you can
     - Customizable (time)
 2. Add words to dictionary or create dictionary
-3. Achievements
+3. Achievements/xp/points based on time
 4. Tutorials/Lessons built into app
 3. Potential four star (without looking/clicking around)
 4. Save incomplete quotes/save quotes for later
