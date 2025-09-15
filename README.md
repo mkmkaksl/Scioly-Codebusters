@@ -1,16 +1,70 @@
-# projects
+# 🧠 Scioly Codebusters
 
-A new Flutter project.
+A feature-rich mobile app designed to help students prepare for the **Science Olympiad Codebusters** event. It includes a wide variety of practice problems and innovative support features such as a **word pattern dictionary**, **stats tracking**, and a **modern UI** built for fast, effective learning.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🎥 Demo / Tutorial
 
-A few resources to get you started if this is your first Flutter project:
+📺 **Watch the tutorial or trailer on YouTube:**  
+[Watch the video](https://www.youtube.com/watch?v=pFcTj_l7BiU)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+> *The tutorial video explains how to solve a common puzzle type and showcases some of the app’s learning tools.*
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## 🚀 Features
+
+- 🔍 **Word Pattern Dictionary**  
+  Search a word and see all words matching the same cryptogram pattern. Supports both English and Spanish.
+
+- 📊 **Stats Tracker**  
+  Compare your puzzle-solving performance across **this week**, **last week**, and **all time**.
+
+- 🧾 **Quote History**  
+  View all quotes you’ve solved, how many stars you earned, and your favorites.
+
+- 🎮 **Multiple Game Modes**  
+  Three game types: **Aristocrats**, **Patristocrats**, and **Xenocrypts** — each available in:
+  - Assisted mode (with hints and tools)
+  - Manual mode (to simulate real test conditions)
+
+- 💡 **Built-In Assistance**  
+  Integrated hints, dictionary suggestions, and "show correct" options to speed up learning.
+
+---
+
+## 📱 Installation
+
+You can **download the app for free** on the App Store:
+
+> 🔗 https://apps.apple.com/us/app/scioly-codebusters/id6642683299
+
+---
+
+## 🛠 Tech Stack
+
+Built with:
+
+- **Flutter**
+- **Riverpod** – for state management
+- **Hive** – for local storage and persistence
+
+---
+
+## 📝 License
+
+This project is licensed under the **MIT License** — feel free to use or adapt it with credit.
+
+---
+
+## 👤 Author
+
+Created by Suvan and Manoj  
+📺 YouTube Channel: YouTube Channel: [@SciolyCodebusters](https://www.youtube.com/@SciolyCodebusters)
+
+---
+
+## 📌 Note
+
+This app is not affiliated with or officially endorsed by Science Olympiad. It is a fan-made educational tool designed to support students competing in the Codebusters event.
