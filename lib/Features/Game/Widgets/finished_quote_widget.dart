@@ -55,6 +55,7 @@ class _FinishedQuoteWidgetState extends ConsumerState<FinishedQuoteWidget>
     }
 
     List<String> messages = ["Good job!", "Congratulations!", "Perfect!"];
+    isFavorited = ref.read(quoteListProvider.notifier).isRecentFavorited();
 
     return Container(
       color: Colors.black.withAlpha(100),

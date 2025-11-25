@@ -35,6 +35,10 @@ class QuoteListNotifier extends StateNotifier<List<SolvedQuote>> {
   Future<void> toggleFavoriteMostRecent() async {
     await toggleFavorite(state.length - 1);
   }
+
+  bool isRecentFavorited() {
+    return state[state.length - 1].isFavorite;
+  }
 }
 
 // Favorites are derived from the main list

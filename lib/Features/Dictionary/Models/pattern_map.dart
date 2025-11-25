@@ -10,7 +10,7 @@ class PatternMap {
   PatternMap();
   PatternMap.fromList(List<String> list) {
     for (var word in list) {
-      addWord(word);
+      addWord(word.toUpperCase());
     }
   }
 
