@@ -34,7 +34,7 @@ export 'Features/Game/Shared/Widgets/game_page_header_widget.dart';
 export 'Features/Game/Shared/Widgets/quote_display_widget.dart';
 export 'Features/Game/Shared/Widgets/finished_quote_widget.dart';
 export 'Features/Game/Shared/Config/game_page_config.dart';
-export 'Features/Game/Mobile/game_mobile_page.dart';
+export 'Features/Game/Shared/game_page_layout.dart';
 export 'Features/Game/game_page.dart';
 
 export 'Features/Keyboard/Shared/Models/keyboard.dart';
