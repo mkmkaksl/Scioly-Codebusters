@@ -1,4 +1,4 @@
-package com.example.projects
+package com.scioly.codebusters
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,2 +1,2 @@
 // Dimensions for web sizings
-const mobileMaxWidth = 400;
+const mobileMaxWidth = 1000;
