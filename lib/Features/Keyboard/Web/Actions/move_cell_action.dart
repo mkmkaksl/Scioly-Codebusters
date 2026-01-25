@@ -12,7 +12,6 @@ class MoveCellAction extends Action<MoveCellIntent> {
   void invoke(covariant MoveCellIntent intent) {
     // > = move right
     // < = move left
-    print('Moving Command registered');
     if (intent.key == '>') {
       ref.read(gameProvider(gameKey).notifier).incrementCell(1);
     } else if (intent.key == '<') {

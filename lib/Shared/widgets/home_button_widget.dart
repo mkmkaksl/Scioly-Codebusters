@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:scioly_codebusters/library.dart';
 
 class HomeButtonWidget extends ConsumerStatefulWidget {
@@ -34,7 +36,8 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
   late final Animation<double> _glowAnimation;
   late final Animation<double> _stopsAnimation;
 
-  final _buttonWidth = screenW * (5 / 6);
+  final _mobileButtonWidth = GameSetup.width * (5 / 6);
+  final _biggerButtonWidth = GameSetup.height * (1 / 2);
   late final List<Color> gradientColor;
 
   @override
@@ -63,10 +66,18 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
       CurvedAnimation(parent: _animationController, curve: Curves.linear),
     );
 
-    gradientColor = [
-      widget.neonColor.withAlpha(widget.initialAlpha),
-      widget.neonColor.withAlpha(widget.finalAlpha),
-    ];
+    if (kIsWeb) {
+      // Make sure animations works on both web and mobile
+      gradientColor = [
+        widget.neonColor.withAlpha(widget.finalAlpha),
+        widget.neonColor.withAlpha(widget.initialAlpha),
+      ];
+    } else {
+      gradientColor = [
+        widget.neonColor.withAlpha(widget.initialAlpha),
+        widget.neonColor.withAlpha(widget.finalAlpha),
+      ];
+    }
   }
 
   @override
@@ -85,6 +96,9 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
 
   @override
   Widget build(BuildContext context) {
+    final _buttonWidth = screenW >= mobileMaxWidth
+        ? _biggerButtonWidth
+        : _mobileButtonWidth;
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {

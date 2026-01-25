@@ -23,7 +23,7 @@ class GamePage extends ConsumerWidget {
     );
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth <= mobileMaxWidth) {
+        if (GameSetup.width <= mobileMaxWidth) {
           return GamePageLayout(config: config);
         } else {
           return GamePageLayout(config: config, addKeyboard: false);

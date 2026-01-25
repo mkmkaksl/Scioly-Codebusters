@@ -14,12 +14,25 @@ class KeyboardShortcutsWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    Map<String, String> commands = {
+      "Ctrl + Z": "Undo last action",
+      "Ctrl + Backspace": "Reset",
+      "Backspace": "Remove cur val",
+      "Left Arrow Key": "Move to left cell",
+      "Right Arrow Key": "Move to right cell",
+    };
+
+    if (language == Language.spanish) {
+      commands["Shift + n"] = "Type ñ";
+    }
+
     return Shortcuts(
       // Maps ctrl + Z and cmd + Z to undo last keyboard action
       // Maps ctrl + backspace to reset
       // Maps backspace to remove val at current selected cell
       // Maps left arrow key to moving to left cell
       // Maps right arrow key to moving to right cell
+      // Shift + N = type ñ (uppercase)
       // (defined in Actions folder)
       shortcuts: <SingleActivator, Intent>{
         SingleActivator(LogicalKeyboardKey.keyZ, control: true):
@@ -34,6 +47,8 @@ class KeyboardShortcutsWidget extends ConsumerWidget {
         SingleActivator(LogicalKeyboardKey.arrowRight): MoveCellIntent(
           key: '>',
         ),
+        SingleActivator(LogicalKeyboardKey.keyN, shift: true):
+            EnnePressIntent(),
       },
       child: Actions(
         actions: <Type, Action<Intent>>{
@@ -42,6 +57,7 @@ class KeyboardShortcutsWidget extends ConsumerWidget {
           DeleteCellIntent: DeleteCellAction(gameKey: gameKey, ref: ref),
           KeyPressIntent: KeyPressAction(gameKey: gameKey, ref: ref),
           MoveCellIntent: MoveCellAction(gameKey: gameKey, ref: ref),
+          EnnePressIntent: EnnePressAction(gameKey: gameKey, ref: ref),
         },
         // Using Builder to provide innerContext which is able to use the above
         // actions mapping
@@ -58,6 +74,11 @@ class KeyboardShortcutsWidget extends ConsumerWidget {
                       // Make sure ctrl and cmd are not pressed down
                       !HardwareKeyboard.instance.isControlPressed &&
                       !HardwareKeyboard.instance.isMetaPressed) {
+                    // If typing ñ, ignore event
+                    if (key.toUpperCase() == 'N' &&
+                        HardwareKeyboard.instance.isShiftPressed) {
+                      return KeyEventResult.ignored;
+                    }
                     Actions.invoke(
                       innerContext,
                       KeyPressIntent(key: key.toUpperCase()),
@@ -67,15 +88,7 @@ class KeyboardShortcutsWidget extends ConsumerWidget {
                 }
                 return KeyEventResult.ignored;
               },
-              child: TextButton(
-                onPressed: Actions.handler<UndoCellIntent>(
-                  innerContext,
-                  UndoCellIntent(),
-                ),
-                child: const Text(
-                  'Press Ctrl + Z to undo; Press any key to type',
-                ),
-              ),
+              child: AvailableCommandsWidget(commands: commands),
             );
           },
         ),

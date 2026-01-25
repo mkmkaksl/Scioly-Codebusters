@@ -15,8 +15,9 @@ const containerFS = 15.0;
 const decorationTextFS = 10.0;
 const padding = 4.0;
 // might need to change if screen size changes (rotation)
-final screenW = GameSetup.width;
-final screenH = GameSetup.height;
+final screenW =
+    GameSetup.width; // use screenW/H for responsive check + theme and
+final screenH = GameSetup.height; // GameSetup for all other
 double get maxLength => (screenW * 0.9) - insetPadding * 2;
 //styling for keyboard
 const double spacing = 4;

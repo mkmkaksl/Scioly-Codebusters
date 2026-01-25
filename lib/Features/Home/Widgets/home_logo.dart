@@ -3,13 +3,13 @@ import 'package:scioly_codebusters/library.dart';
 
 class HomeLogo extends StatelessWidget {
   HomeLogo({super.key});
-
-  final width = GameSetup.width * (1 / 2);
+  final mobileSize = GameSetup.width * (1 / 2);
+  final biggerSize = GameSetup.height * (1 / 3);
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
-      height: width,
+      width: (screenW >= mobileMaxWidth) ? biggerSize : mobileSize,
+      height: (screenW >= mobileMaxWidth) ? biggerSize : mobileSize,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(500),
         border: Border.all(color: AppTheme.logoGreen, width: 2),
